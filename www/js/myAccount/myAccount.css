@@ -1,0 +1,81 @@
+.platform-ios .myAccountContainer {
+  padding: 1rem;
+}
+
+.myAccountContainer {
+  padding: 1rem;
+}
+
+
+.receiveNotification {
+  font-size: 1rem;
+  display: flex;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.receiveNotification span {
+  display: block;
+  position: relative;
+  top: -3px;
+}
+
+.speedDisplay {
+  font-size: 1rem;
+  margin-bottom: 1rem;
+}
+
+.speedDisplay span {
+  margin-bottom: .5rem;
+  display: block;
+}
+
+.privacyPolicyButton {
+  width: 100%;
+}
+
+.myAccountContainer .toggle .track {
+  background-color: red;
+}
+.chart-container {
+	width: 50%;
+	float: left;
+}
+.chart.chart-doughnut {
+	margin: 0 auto;
+	margin-bottom: 18px;
+}
+.chart-label {
+	text-align: center;
+	margin-bottom: 8px;
+	font-size: 1.2rem;
+}
+.account-info {
+	font-size: 1rem;
+	margin-bottom: 4px;
+}
+.account-info.green {
+	color: green;
+}
+.account-info.red {
+	color: #FF3526;
+}
+.form-container {
+	margin-top: 18px;
+	margin-bottom: 18px;
+}
+.form-container input {
+	width: 100%;
+	padding: 10px;
+	height: auto;
+	font-size: 1.2rem;
+	border: 1px solid #2B82D4;
+	margin-bottom: 8px;
+	border-radius: 4px;
+}
+.form-container button.button {
+	width: 100%;
+	border: 1px solid #2B82D4;
+	color: #ffffff;
+	background: #2B82D4;
+}

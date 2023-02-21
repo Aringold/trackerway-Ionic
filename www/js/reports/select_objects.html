@@ -1,0 +1,10 @@
+<div ng-repeat="object in objects">
+	<div class="toggle-wrapper flex-row">
+		<span>{{ object.name }}</span>
+		<label class="switch">
+			<input ng-model="object.selected" type="checkbox" class="ng-pristine ng-untouched ng-valid ng-empty">
+			<div class="sliderT round">
+			</div>
+		</label>
+	</div>
+</div>

@@ -1,0 +1,29 @@
+<ion-view class="loginView" view-title='{{ "REGISTER" | translate | capFirst}}' ng-controller="registerController as register">
+  <div class="loginContainer">
+    <div class="loginLogoContainer">
+      <img class="loginLogo" src="img/login-logo.png">
+    </div>
+
+    <div class="registerBox">
+      <!--<div class="serverSelect">-->
+        <!--<span ng-class="{selected: register.gpslive }" ng-click="register.gpslive=!register.gpslive">GPSLive</span>-->
+        <!--<span ng-class="{selected: !register.gpslive }" ng-click="register.gpslive=!register.gpslive">GPSLive Premium</span>-->
+      <!--</div>-->
+
+      <div class="registerInfo">{{ 'LOGIN_DATA_WILL_BE_SENT' | translate | capFirst}}</div>
+
+      <form class="loginForm">
+        <label class="item-input">
+          <i class="icon ion-at placeholder-icon"></i>
+          <input class="logininput" type="text" required autocorrect="off" autocapitalize="none" ng-model="register.email" placeholder="{{ 'EMAIL' | translate | capFirst}}">
+        </label>
+
+      </form>
+      <div class="buttonContainer">
+        <ion-spinner style="display: inline;" ng-show="register.working" class="spinner-positive"></ion-spinner>
+        <button ng-show="!register.working" class="registerButton button button-stable" ng-click="register.register()">{{ 'REGISTER' | translate | capFirst}}</button>
+        <button ng-show="!register.working" class="cancelButton button button-stable" ng-click="register.cancel()">{{ 'CANCEL' | translate | capFirst}}</button>
+      </div>
+    </div>
+  </div>
+</ion-view>

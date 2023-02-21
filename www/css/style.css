@@ -1,0 +1,233 @@
+* {
+  /*-webkit-box-shadow: none !important;*/
+  /*-moz-box-shadow: none !important;*/
+  box-shadow: none !important;
+}
+
+@font-face {
+  font-family: "century gothic";
+  src: url(../fonts/gothic.woff);
+}
+
+html {
+  font-size: 16px !important;
+}
+
+html, body, ion-nav-view {
+  font-family: "century gothic", "-apple-system", "Helvetica Neue", "Roboto", "Segoe UI", sans-serif !important;
+  background: #000 !important;
+}
+
+.verticalAlign {
+  display: flex;
+  align-content: center;
+  align-items: center;
+  justify-content: center;
+}
+
+#toast-container {
+  padding-top: 10px;
+}
+
+ion-nav-bar {
+  /* to hide navbar on login screen
+   * becomes display: block in home.html*/
+  /*display: none;*/
+}
+
+ion-nav-bar .button.back-button.buttons.button-icon.header-item {
+  width: 2rem;
+}
+
+.bar-header {
+  top: 0;
+  border-top-width: 0;
+  border-bottom-width: 1px !important;
+  border: 1px solid transparent;
+  border-bottom-color: rgba(0, 0, 0, .1);
+}
+
+.bar-header {
+  border: 0px !important;
+  border-bottom-color: transparent !important;
+  background-image: none !important;
+  border-bottom: none !important;
+}
+
+.bar-header, .title.title-center.header-item {
+  height: 2.75rem; /*just an example*/
+}
+
+.bar-header .title {
+  line-height: 2.75rem;
+}
+
+.has-header {
+  top: 2.75rem;
+}
+
+.title-image {
+}
+
+.logout-button {
+  padding: 0;
+  width: 3rem;
+}
+
+html body i.icon.ion-log-out:before {
+  font-size: 1.3rem !important;
+}
+
+.card {
+  border: 1px solid rgba(0, 0, 0, .1);
+}
+
+i.icon.info-icon {
+  border: 1.85px solid;
+  border-radius: 100%;
+  width: 20px;
+  height: 20px;
+  display: flex;
+  position: relative;
+  top: .5px;
+  justify-content: center;
+  align-items: center;
+  font-size: 12px;
+}
+
+button.button-icon.logout-button {
+  padding: 4px 15px 7px 10px;
+}
+
+html body .item-divider, html body .item-divider.activated {
+  background-color: #2d71ce;
+  color: #fff;
+}
+
+/* The switch - the box around the slider */
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 55px;
+  height: 35px;
+}
+
+/* Hide default HTML checkbox */
+.switch input {
+  display: none;
+}
+
+/* The slider */
+.sliderT {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0px;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+.sliderT:before {
+  position: absolute;
+  content: "";
+  height: 30px;
+  width: 30px;
+  left: 2px;
+  bottom: 3px;
+  background-color: white;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+input:checked + .sliderT {
+  background-color: #2196F3;
+}
+
+input:focus + .sliderT {
+  box-shadow: 0 0 1px #2196F3;
+}
+
+input:checked + .sliderT:before {
+  left: 23px;
+}
+
+/* Rounded sliders */
+.sliderT.round {
+  border-radius: 34px;
+}
+
+.sliderT.round:before {
+  border-radius: 50%;
+}
+.popup .popup-buttons .button-positive {
+	color: #ffffff;
+	background-color: #2B82D4;
+}
+body.Keyboard-open {
+	border: 1px solid red !important;
+}
+
+.platform-ios ion-side-menu-content {
+  padding-top: 16px;
+}
+.platform-ios ion-header-bar.nav-title-slide-ios7 {
+  margin-top: 16px;
+}
+.platform-ios ion-side-menu-content ion-nav-view.view-container {
+  height: calc(100% - 16px);
+}
+
+@media only screen and (device-width : 375px) and (device-height : 812px)  and (-webkit-device-pixel-ratio : 3) { 
+	html, body, ion-hav-view {
+		background-color: #ffffff !important;
+	}
+	ion-side-menus.view {
+		top: 15px;
+		bottom: 20px;
+		height: calc(100% - 15px - 20px);
+	}
+}
+@media only screen 
+    and (device-width : 414px) 
+    and (device-height : 896px) 
+    and (-webkit-device-pixel-ratio : 2) { 
+	html, body, ion-hav-view {
+		background-color: #ffffff !important;
+	}
+	ion-side-menus.view {
+		top: 15px;
+		bottom: 20px;
+		height: calc(100% - 15px - 20px);
+	}
+}
+
+@media only screen 
+    and (device-width : 375px) 
+    and (device-height : 812px) 
+    and (-webkit-device-pixel-ratio : 3) { 
+	html, body, ion-hav-view {
+		background-color: #ffffff !important;
+	}
+	ion-side-menus.view {
+		top: 15px;
+		bottom: 20px;
+		height: calc(100% - 15px - 20px);
+	}
+}
+
+@media only screen 
+    and (device-width : 414px) 
+    and (device-height : 896px) 
+    and (-webkit-device-pixel-ratio : 3) { 
+	html, body, ion-hav-view {
+		background-color: #ffffff !important;
+	}
+	ion-side-menus.view {
+		top: 15px;
+		bottom: 20px;
+		height: calc(100% - 15px - 20px);
+	}
+}

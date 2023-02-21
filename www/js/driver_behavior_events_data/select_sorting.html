@@ -1,0 +1,5 @@
+<div ng-repeat="value in sortBy">
+  <div class="checkbox-list-wrapper">
+    <ion-radio ng-model="selectedItem" ng-value="value.value" ng-click="selectSorting(value)">{{ value.name }}</ion-radio>
+  </div>
+</div>

@@ -1,0 +1,31 @@
+<ion-view class="homepageCustomizerView" view-title="{{ 'HOMEPAGE_CUSTOMIZER' | translate | capFirst}}" ng-controller="homepageCustomizerController as homepageCustomizer">
+  <ion-content>
+    <div class="homepageSettingsContainer">
+      <div class="expiredObjects search-device" style="padding: .5rem;">
+        <input type="text" placeholder="{{ 'SEARCH_DEVICE' | translate | capFirst}}" ng-model="homepageCustomizer.searchObject" style="width: 100%;">
+      </div>
+      <div class="expiredObjects search-device" style="padding: .5rem;">
+        <input type="text" placeholder="{{ 'SEARCH_DEVICE_WITH_SENSOR' | translate | capFirst}}" ng-model="homepageCustomizer.searchSensor" style="width: 100%;">
+      </div>
+      <div ng-repeat="(imei, object) in objectsSettings">
+        <div ng-if="homepageCustomizer.filterObjects(object)">
+          <div class="object">{{object.name}}</div>
+          <div ng-repeat="(key, value) in object.sensors">
+            <div ng-if="homepageCustomizer.filterSensors(key)">
+              <div class="sensors" ng-if="value.editable">
+                <span ng-if="!value.data">{{"SHOW" | translate | capFirst}} "{{ key | toUpperCase | translate | capFirst}}" {{"ON_HOMEPAGE" | translate}}:</span>
+                <span ng-if="value.data">{{"SHOW" | translate | capFirst}} "{{ key }}" {{"ON_HOMEPAGE" | translate}}:</span>
+                <div style="flex:1;"></div>
+                <label class="switch">
+                  <input ng-model="value.visible" type="checkbox" class="ng-pristine ng-untouched ng-valid ng-empty">
+                  <div class="sliderT round">
+                  </div>
+                </label>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </ion-content>
+</ion-view>

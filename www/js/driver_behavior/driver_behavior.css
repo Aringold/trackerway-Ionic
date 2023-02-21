@@ -1,0 +1,107 @@
+.driverBehaviorView .driverBehaviorContent {
+  padding-left: 1rem;
+  padding-right: 1rem;
+  padding-bottom: 2px;
+}
+.driverBehaviorView .driverBehaviorContent .spinner-container {
+  height: 90vh;
+  width: 100%;
+  background: transparent;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.driverBehaviorView .driverBehaviorContent .spinner-container .spinner svg {
+  width: 48px;
+  height: 48px;
+}
+.driverBehaviorView .driverBehaviorContent .row,
+.driverBehaviorView .driverBehaviorContent .row .col {
+}
+.driverBehaviorView .driverBehaviorContent .overview .counter .icon {
+  height: 46px;
+}
+.driverBehaviorView .driverBehaviorContent .overview .counter .icon img {
+  width: 40px;
+  height: 40px;
+}
+.driverBehaviorView .driverBehaviorContent .overview .counter .counter-value-large {
+  font-size: 3rem;
+}
+.driverBehaviorView .driverBehaviorContent .overview .counter .counter-title {
+  font-size: 0.8rem;
+  color: #c5c7cc;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+.driverBehaviorView .driverBehaviorContent .vehicle-details .counter .vehicle-rating {
+  height: 46px;
+  line-height: 36px;
+}
+.driverBehaviorView .driverBehaviorContent .vehicle-details .counter .vehicle-rating.rating-a-plus {
+  color: #1ebfae;
+}
+.driverBehaviorView .driverBehaviorContent .vehicle-details .counter .vehicle-rating.rating-a {
+  color: #30a5ff;
+}
+.driverBehaviorView .driverBehaviorContent .vehicle-details .counter .vehicle-rating.rating-b {
+  color: #ffb53e;
+}
+.driverBehaviorView .driverBehaviorContent .vehicle-details .counter .vehicle-rating.rating-c {
+  color: #f9243f;
+}
+.driverBehaviorView .driverBehaviorContent .vehicle-details .counter .icon {
+  height: 46px;
+}
+.driverBehaviorView .driverBehaviorContent .vehicle-details .counter .icon img {
+  width: 40px;
+  height: 40px;
+}
+.driverBehaviorView .driverBehaviorContent .vehicle-details .counter .counter-value-large {
+  font-size: 3rem;
+}
+.driverBehaviorView .driverBehaviorContent .vehicle-details .counter .counter-title {
+  font-size: 0.8rem;
+  color: #c5c7cc;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+.driverBehaviorView .driverBehaviorContent .ratings .rating .rating-title,
+.driverBehaviorView .driverBehaviorContent .ratings .rating .rating-counter {
+  font-size: 3rem;
+}
+.driverBehaviorView .driverBehaviorContent .ratings .rating.rating-a-plus .rating-title {
+  color: #1ebfae;
+}
+.driverBehaviorView .driverBehaviorContent .ratings .rating.rating-a .rating-title {
+  color: #30a5ff;
+}
+.driverBehaviorView .driverBehaviorContent .ratings .rating.rating-b .rating-title {
+  color: #ffb53e;
+}
+.driverBehaviorView .driverBehaviorContent .ratings .rating.rating-c .rating-title {
+  color: #f9243f;
+}
+.driverBehaviorView .driverBehaviorContent .charts {
+  margin-top: 0.5rem;
+}
+.driverBehaviorView .driverBehaviorContent button.button.searchButton {
+  width: 100%;
+  margin: 0.5rem auto;
+  display: block;
+  border: 1px solid #2B82D4;
+	background-color: #2B82D4;
+	color: #ffffff;
+}
+.driverBehaviorView .driverBehaviorContent button.button.searchButton[disabled] {
+	opacity: 0.7;
+}
+.driverBehaviorView .driverBehaviorContent label.item.item-input {
+  border-radius: 4px;
+  height: 47px;
+}
+.driverBehaviorView .driverBehaviorContent .no-events {
+}
+.driverBehaviorView .driverBehaviorContent .no-events p {
+  text-align: center;
+}

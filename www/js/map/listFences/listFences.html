@@ -1,0 +1,47 @@
+<ion-view class="trackerConfigView" view-title="{{'ZONES' | translate }}" ng-controller="listFencesController as listFences">
+  <ion-content class="listFencesContainer">
+		<div class="buttonContainer">
+			<button style="" class="button addZoneButton" ng-disabled="objCtrl.demo || objCtrl.subuser" ui-sref="addFence">{{ 'ADD_ZONE' | translate | capFirst}}</button>
+		</div>
+		<label class="item-input search-input">
+			<input type="text"
+					autocorrect="off"
+					autocapitalize="none"
+					ng-model="search.name"
+			 		placeholder="{{ 'SEARCH_ZONE' | translate | capFirst}}">
+		</label>
+		<div class="listFencesRepeatingContainer" item-width="100%" ng-repeat="zone in listFences.zones | filter:search">
+			<div class="card">
+				<div class="item item-divider">
+					<div class="pull-left">{{zone.name}}</div>
+					<button class="button icon button-small button-clear ion-ios-trash pull-right" ng-click="listFences.deleteZone($event, zone)"></button>
+					<button class="button icon button-small button-clear ion-edit pull-right" ng-click="listFences.editZone($event, zone)"></button>
+				</div>
+				<div class="item item-text-wrap">
+					<table class="listFencesTable">
+						<tr>
+							<td>{{ 'GROUP' | translate | capFirst}}:</td>
+							<td>{{zone.group}}</td>
+						</tr>
+						<tr>
+							<td>{{ 'COLOR' | translate | capFirst}}:</td>
+							<td><span style="background-color: {{zone.color}}" class="colorBox"></span></td>
+						</tr>
+						<tr>
+							<td>{{ 'ZONE_VISIBLE' | translate | capFirst}}:</td>
+							<td>{{zone.visible}}</td>
+						</tr>
+						<tr>
+							<td>{{ 'NAME_VISIBLE' | translate | capFirst}}:</td>
+							<td>{{zone.name_visible}}</td>
+						</tr>
+						<tr>
+							<td>{{ 'MEASURE_AREA' | translate | capFirst}}:</td>
+							<td>{{zone.area}}</td>
+						</tr>
+					</table>
+				</div>
+			</div>
+		</div>
+  </ion-content>
+</ion-view>

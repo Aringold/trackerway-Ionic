@@ -1,0 +1,5 @@
+<div ng-repeat="period in periods">
+	<div class="checkbox-list-wrapper">
+		<ion-radio ng-model="selectedItem" ng-value="period.value" ng-click="selectItem(period.value)">{{ period.title }}</ion-radio>
+	</div>
+</div>

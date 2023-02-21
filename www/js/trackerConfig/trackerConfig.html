@@ -1,0 +1,43 @@
+<ion-view class="trackerConfigView" view-title="Tracker Config" ng-controller="trackerConfigController as tracker">
+  <ion-content>
+    <div class="trackerConfigContainer">
+
+
+      <div class="addObjectButtonContainer">
+        <button class="button" ui-sref="addObject">Add New Object</button>
+      </div>
+
+      <div class="list">
+        <label class="item item-input item-select">
+          <div class="input-label">
+            Object
+          </div>
+          <select ng-model="tracker.selectedObjectIndex"
+                  ng-options="idx as object.name for (idx, object) in tracker.objects">
+            <!--<option value="{{ object.imei }}" ng-repeat="object in tracker.objects">{{ object.name }}</option>-->
+          </select>
+        </label>
+      </div>
+
+      <div class="list">
+        <label class="item item-input item-select">
+          <div class="input-label">
+            Type
+          </div>
+          <select ng-model="tracker.selectedTypeIndex"
+                  ng-options="idx as objectType.name for (idx, objectType) in tracker.objectTypes">
+          </select>
+        </label>
+      </div>
+
+      <div class="addObjectButtonContainer" ui-sref="liveTrackingSetup">
+        <button class="button">Live Tracking Setup</button>
+      </div>
+
+      <div class="addObjectButtonContainer">
+        <button class="button">Tracker Configuration</button>
+      </div>
+
+    </div>
+  </ion-content>
+</ion-view>

@@ -1,0 +1,198 @@
+<ion-view class="gprsCommandView" view-title="{{ 'GPRS_COMMAND' | translate | capFirst}}"
+  ng-controller="gprsCommandController as gprsCtrl">
+  <ion-content class="objectsContent">
+    <div ng-hide="gprsCtrl.working" class="addContainer">
+      <label class="item item-input item-select">
+        <div class="input-label">
+          {{ 'DEVICE' | translate | capFirst}}
+        </div>
+        <button class="button empty" ng-click="gprsCtrl.selectObject()">{{ gprsCtrl.cmdForm.name }}</button>
+      </label>
+
+      <label class="item item-input item-select">
+        <div class="input-label">
+          {{ 'GATEWAY' | translate | capFirst}}
+        </div>
+        <select ng-model="gprsCtrl.cmdForm.gateway">
+          <option value="gprs">{{ 'GPRS' | translate }}</option>
+          <option value="sms">{{ 'SMS' | translate }}</option>
+        </select>
+      </label>
+
+      <label class="item item-input item-select">
+        <div class="input-label">
+          {{ 'TEMPLATE' | translate | capFirst}}
+        </div>
+        <select ng-model="gprsCtrl.cmdForm.template" ng-change="updateForm()">
+          <option value="Custom">{{ 'CUSTOM' | translate | capFirst }}</option>
+          <option ng-repeat="template in gprsCtrl.templates" value="{{template.name}}">{{ template.name }}</option>
+        </select>
+      </label>
+
+      <label class="item item-input item-select">
+        <div class="input-label">
+          {{ 'TYPE' | translate | capFirst}}
+        </div>
+        <select ng-model="gprsCtrl.cmdForm.type">
+          <option value="ascii">{{ 'ASCII' | translate }}</option>
+          <option value="hex">{{ 'HEX' | translate }}</option>
+        </select>
+      </label>
+
+      <div class="expiredObjects" style="padding: .5rem;">
+        <input type="text" placeholder="{{ 'COMMAND' | translate | capFirst}}" ng-model="gprsCtrl.cmdForm.command"
+          style="width: 100%;">
+      </div>
+
+      <button class="button addObjectButtonInObjects" ng-disabled="!gprsCtrl.cmdForm.command.length || gprsCtrl.demo"
+        ng-click="gprsCtrl.sendCommand($event)">{{ 'SEND' | translate | capFirst}}</button>
+    </div>
+
+    <div ng-show="gprsCtrl.working" class="objectsSpinnerContainer">
+      <ion-spinner class="spinner-positive"></ion-spinner>
+    </div>
+
+    <div class="objectCardContainer" ng-hide="gprsCtrl.working">
+      <div class="objectRepeatingContainer" item-height="240" item-width="100%"
+        ng-repeat="command in gprsCtrl.commands">
+        <div class="card">
+          <div class="item item-divider item-title">
+            <div style="flex:1">{{ command.device }}</div>
+            <div class="editObject" ng-click="gprsCtrl.deleteCommand($event,command.id)"><i class="ion-trash-a"></i>
+            </div>
+          </div>
+
+          <div class="item-text-wrap objectLayout">
+            <div class="objectsContainer">
+              <div class="objectRow">
+                <div class="objectKey" style="width:135px;">{{ 'COMMAND' | translate | capFirst}}:</div>
+                <div class="objectValue" style="text-align: right; width: 100%;">{{command.command}}</div>
+              </div>
+
+              <div class="objectRow">
+                <div class="objectKey" style="width:135px;">{{ 'STATUS' | translate | capFirst}}:</div>
+                <div class="objectValue" style="text-align: right; width: 100%;">{{command.status | translate | capFirst
+                  }}</div>
+              </div>
+
+              <div class="objectRow">
+                <div class="objectKey" style="width:135px;">{{ 'DATE' | translate | capFirst}}:</div>
+                <div class="objectValue" style="text-align: right; width: 100%;">{{command.datetime}}</div>
+              </div>
+
+              <div class="objectRow">
+                <div class="objectKey" style="width:135px;">{{ 'GATEWAY' | translate | capFirst }}</div>
+                <div class="objectValue" style="text-align: right; width: 100%;">{{command.gateway}}</div>
+              </div>
+
+              <div class="objectRow">
+                <div class="objectKey" style="width:135px;">{{ 'TEMPLATE' | translate | capFirst }}</div>
+                <div class="objectValue" style="text-align: right; width: 100%;">{{command.template}}</div>
+              </div>
+
+              <div class="objectRow">
+                <div class="objectKey" style="width:135px;">{{ 'TYPE' | translate | capFirst }}</div>
+                <div class="objectValue" style="text-align: right; width: 100%;">{{command.type}}</div>
+              </div>
+
+              <div class="objectRow">
+                <div class="objectKey" style="width:135px;">Show reply:</div>
+                <div class="objectValue show-span" style="text-align: right; width: 100%;"><span
+                    id="ascii-{{command.id}}" ng-click="showAscii($event)" class="ui-icon-plus"></span></div>
+              </div>
+              <div class="ascii-block">
+                <div class="objectValue" id="{{command.id}}" style="text-align: right; width: 100%;"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </ion-content>
+  <div class="myBackdrop" ng-show="gprsCtrl.modalOpen" ng-click="gprsCtrl.modalOpen = false"></div>
+  <div class="myModal" ng-show="gprsCtrl.modalOpen">
+
+    <div class="item-divider editObject-Title">{{ 'SETTINGS' | translate | capFirst}}<i class="ion-close-round"
+        ng-click="gprsCtrl.modalOpen = !gprsCtrl.modalOpen"></i></div>
+
+    <div class="modalSettinsContainer" ng-show="!gprsCtrl.modalIcons">
+
+      <div class="flexy freqRadio">
+        <button class="updateButton" ng-click="gprsCtrl.modalIcons = !gprsCtrl.modalIcons">{{ 'CHANGE_ICON' | translate
+          | capFirst}}</button>
+      </div>
+
+      <div class="flexy freqRadio">
+        <div class="radioTitle">{{ 'UPDATE_INTERVAL' | translate | capFirst}}</div>
+        <div class="radioLabelContainer">
+          <label>
+            <input type="radio" ng-model="gprsCtrl.update_interval" value="30sec">{{ 'THIRTY_SECONDS' | translate |
+            capFirst}}<div></div>
+          </label>
+          <label>
+            <input type="radio" ng-model="gprsCtrl.update_interval" value="60sec">{{ 'SIXTY_SECONDS' | translate |
+            capFirst}}<div></div>
+          </label>
+          <label>
+            <input type="radio" ng-model="gprsCtrl.update_interval" value="5min">{{ 'FIVE_MINUTES' | translate |
+            capFirst}}<div></div>
+          </label>
+          <label>
+            <input type="radio" ng-model="gprsCtrl.update_interval" value="10min">{{ 'TEN_MINUTES' | translate |
+            capFirst}}<div></div>
+          </label>
+          <label>
+            <input type="radio" ng-model="gprsCtrl.update_interval" value="disab">{{ 'DISABLED' | translate | capFirst}}
+            <div></div>
+          </label>
+        </div>
+        <button class="updateButton" ng-click="gprsCtrl.updateSettings('update_interval',gprsCtrl.update_interval)">{{
+          'UPDATE' | translate | capFirst}}</button>
+      </div>
+
+      <div class="flexy freqRadio">
+        <div class="radioTitle">{{ 'LED_INDICATORS' | translate | capFirst}}</div>
+        <div class="radioLabelContainer">
+          <label>
+            <input type="radio" ng-model="gprsCtrl.led_indicators" value="on">{{ 'ON' | translate | capFirst}}<div>
+            </div>
+          </label>
+          <label>
+            <input type="radio" ng-model="gprsCtrl.led_indicators" value="off">{{ 'OFF' | translate | capFirst}}<div>
+            </div>
+          </label>
+        </div>
+        <div class="flexSpacer"></div>
+        <button class="updateButton" ng-click="gprsCtrl.updateSettings('led_indicators',gprsCtrl.led_indicators)">{{
+          'UPDATE' | translate | capFirst}}</button>
+      </div>
+
+      <div class="flexy freqRadio">
+        <div class="radioTitle">{{ 'HEARTBEAT' | translate | capFirst}}</div>
+        <div class="radioLabelContainer">
+          <label>
+            <input type="radio" ng-model="gprsCtrl.heartbeat" value="on">{{ 'ON' | translate | capFirst}}<div></div>
+          </label>
+          <label>
+            <input type="radio" ng-model="gprsCtrl.heartbeat" value="off">{{ 'OFF' | translate | capFirst}}<div></div>
+          </label>
+        </div>
+        <div class="flexSpacer"></div>
+        <button class="updateButton" ng-click="gprsCtrl.updateSettings('heartbeat',gprsCtrl.heartbeat)">{{ 'UPDATE' |
+          translate | capFirst}}</button>
+      </div>
+
+    </div>
+
+
+    <div class="editIconContainer" ng-show="gprsCtrl.modalIcons">
+      <div class="icons">
+        <img ng-click="gprsCtrl.changeIcon(icon)"
+          class="{{ gprsCtrl.objectToEdit.icon.indexOf(icon) !== -1 ? 'currentImg':''  }}"
+          ng-src="{{gprsCtrl.imgBaseUrl + icon}}" ng-repeat="icon in gprsCtrl.icons">
+      </div>
+    </div>
+
+  </div>
+
+</ion-view>

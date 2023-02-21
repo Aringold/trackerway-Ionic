@@ -1,0 +1,64 @@
+<div class="group-wrapper">
+	<div class="label-group">
+		<span>{{ 'ZONES' | translate }}:</span>
+	</div>
+	<div class="toggle-wrapper flex-row" ng-repeat="obj in eventSettings.zones track by $index">
+		<span>{{ eventSettings.zones[$index].title }}</span>
+		<label class="switch">
+			<input ng-model="eventSettings.zones[$index].is_selected" type="checkbox" class="ng-pristine ng-untouched ng-valid ng-empty">
+			<div class="sliderT round">
+			</div>
+		</label>
+	</div>
+	<div ng-if="!eventSettings.zones.length" class="no-zones">
+		{{ 'YOU_HAVE_NO_ZONES' | translate }},&nbsp;<button class="button button-small button-round" ng-click="openZoneCrud()">{{ 'CREATE_ZONE_NOW' | translate | lowercase }}</button>
+	</div>
+</div>
+<div class="toggle-wrapper flex-row">
+	<span>{{ 'ALERT_SYSTEM_MESSAGE' | translate }}</span>
+	<label class="switch">
+		<input ng-model="eventSettings.system_alert" type="checkbox" class="ng-pristine ng-untouched ng-valid ng-empty">
+		<div class="sliderT round">
+		</div>
+	</label>
+</div>
+<div class="toggle-wrapper flex-row">
+	<span>{{ 'ALERT_MESSAGE_TO_EMAIL' | translate }}</span>
+	<label class="switch">
+		<input ng-model="eventSettings.alert_to_email" type="checkbox" class="ng-pristine ng-untouched ng-valid ng-empty">
+		<div class="sliderT round">
+		</div>
+	</label>
+</div>
+<div class="input-wrapper" ng-if="eventSettings.alert_to_email">
+	<div class="label-group">
+		<span>{{ 'ALERT_EMAILS_LABEL' | translate }}:</span>
+		<button class="button button-settings" ng-click="addField(eventSettings.emails)"><i class="ion-ios-plus"></i></button>
+	</div>
+	<div class="input-group-wrapper">
+		<div class="input-group" ng-repeat="str in eventSettings.emails track by $index">
+			<input type="email" placeholder="{{ 'ENTER_EMAIL' | translate }}" ng-model="eventSettings.emails[$index]" maxlength="255">
+			<button class="button button-settings" ng-click="removeField(eventSettings.emails, $index)"><i class="ion-ios-minus"></i></button>
+		</div>
+	</div>
+</div>
+<div class="toggle-wrapper flex-row">
+	<span>{{ 'ALERT_SMS_TO_MOBILE' | translate }}</span>
+	<label class="switch">
+		<input ng-model="eventSettings.alert_to_sms" type="checkbox" class="ng-pristine ng-untouched ng-valid ng-empty">
+		<div class="sliderT round">
+		</div>
+	</label>
+</div>
+<div class="input-wrapper" ng-if="eventSettings.alert_to_sms">
+	<div class="label-group">
+		<span>{{ 'ALERT_SMS_LABEL' | translate }}:</span>
+		<button class="button button-settings" ng-click="addField(eventSettings.phones)"><i class="ion-ios-plus"></i></button>
+	</div>
+	<div class="input-group-wrapper">
+		<div class="input-group" ng-repeat="str in eventSettings.phones track by $index">
+			<input type="tel" placeholder="{{ 'ENTER_PHONE' | translate }}" ng-model="eventSettings.phones[$index]" maxlength="255">
+			<button class="button button-settings" ng-click="removeField(eventSettings.phones, $index)"><i class="ion-ios-minus"></i></button>
+		</div>
+	</div>
+</div>

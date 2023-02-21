@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="490px" height="511px" viewBox="0 0 490 511" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 49.3 (51167) - http://www.bohemiancoding.com/sketch -->
+    <title>zones_white</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="zones">
+            <polygon id="Shape" stroke="#2B82D4" stroke-width="37" points="212.067 457.094 53.862 327.67 86.842 125.95 278.028 53.652 436.235 183.074 403.254 384.794"></polygon>
+            <circle id="Oval" fill="#2B82D4" fill-rule="nonzero" cx="87.183" cy="127.033" r="53.652"></circle>
+            <circle id="Oval" fill="#2B82D4" fill-rule="nonzero" cx="277.605" cy="53.652" r="53.652"></circle>
+            <circle id="Oval" fill="#2B82D4" fill-rule="nonzero" cx="436.234" cy="180.686" r="53.652"></circle>
+            <circle id="Oval" fill="#2B82D4" fill-rule="nonzero" cx="401.77" cy="383.904" r="53.652"></circle>
+            <circle id="Oval" fill="#2B82D4" fill-rule="nonzero" cx="211.156" cy="457.094" r="53.652"></circle>
+            <circle id="Oval" fill="#2B82D4" fill-rule="nonzero" cx="53.862" cy="328.557" r="53.652"></circle>
+        </g>
+    </g>
+</svg>

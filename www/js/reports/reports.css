@@ -1,0 +1,137 @@
+.formContainer {
+    padding: 1rem;
+}
+
+.popup-body .formContainer {
+    padding: 0;
+}
+
+.popup-body .formContainer>.input-wrapper:first-child {
+    margin-top: 0;
+}
+
+.formContainer .toggle-wrapper {
+    font-size: 1rem;
+    display: flex;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.formContainer .toggle-wrapper span {
+    display: block;
+    position: relative;
+    top: -3px;
+}
+
+.formContainer .checkbox-list-wrapper {
+    font-size: 1rem;
+    margin-bottom: 1rem;
+}
+
+.formContainer .checkbox-list-wrapper>span {
+    margin-bottom: .5rem;
+    display: block;
+}
+
+.formContainer .item-select select {
+    direction: ltr;
+}
+
+.formContainer .input-wrapper {
+    margin-top: 18px;
+    margin-bottom: 18px;
+}
+
+.formContainer .input-wrapper>span {
+    margin-bottom: .5rem;
+    display: block;
+}
+
+.formContainer .input-wrapper input {
+    width: 100%;
+    padding: 1rem;
+    height: auto;
+    font-size: 1rem;
+    border: 1px solid #2B82D4;
+    margin-bottom: 8px;
+    border-radius: 4px;
+}
+
+.formContainer .input-wrapper textarea {
+    width: 100%;
+    padding: 1rem;
+    height: auto;
+    font-size: 1rem;
+    border: 1px solid #2b82d4;
+    margin-bottom: 8px;
+    border-radius: 4px;
+}
+
+.formContainer .button-wrapper {
+    margin-top: 18px;
+    margin-bottom: 18px;
+}
+
+.formContainer .button-wrapper button.button {
+    width: 100%;
+    border: 1px solid #2b82d4;
+    color: #ffffff;
+    background: #2b82d4;
+}
+
+.formContainer .margin-bottom {
+    margin-bottom: 1rem;
+}
+
+.toggle-wrapper.flex-row {
+    display: flex;
+    flex: 1;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 6px;
+}
+
+.toggle-wrapper.flex-row span {
+    flex: 1;
+}
+
+.toggle-wrapper.flex-row label {}
+
+.item.item-input button.button {
+    height: 100%;
+}
+
+.item.item-input button.button.empty {
+    border: 0px;
+    background-color: transparent;
+}
+
+.item.item-radio-select div.input-label {
+    display: flex;
+    flex: 1;
+}
+
+.item.item-radio-select button.button {
+    display: flex;
+    flex: 1;
+    justify-content: end;
+    text-align: right;
+}
+
+.popup-container.view-report .popup {
+    width: 100%;
+    height: 100%;
+}
+
+.popup-container.view-report .popup .popup-body {
+    height: calc(100% - 48px - 20px - 65px);
+}
+
+.popup-container.view-report .popup div.pdfjs {
+    height: 100%;
+}
+
+.popup-container.view-report .popup div.pdfjs #pageNumber {
+    height: 23px;
+}

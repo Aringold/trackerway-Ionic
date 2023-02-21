@@ -1,0 +1,173 @@
+<ion-view class="objectsView" view-title="{{ 'DEVICES' | translate | capFirst}}" ng-controller="objectController as objCtrl">
+  <ion-content class="objectsContent" keepScroll>
+    <div ng-hide="objCtrl.working" class="addContainer">
+      <button style="" class="button addObjectButtonInObjects" ng-disabled="objCtrl.demo || objCtrl.subuser" ui-sref="addObject">{{ 'ADD_DEVICE' | translate | capFirst}}</button>
+
+      <div class="expiredObjects" ng-show="inactive_object_count > 0">You have {{inactive_object_count}} inactive objects.</div>
+      <div class="expiredObjects search-device" style="padding: .5rem;">
+        <input type="text" placeholder="{{ 'SEARCH_DEVICE' | translate | capFirst}}" ng-model="objCtrl.search" style="width: 100%;">
+      </div>
+
+      <button style="" class="button addObjectButtonInObjects" ng-click="objCtrl.gotoMapAllObjects()">{{ 'ALL_DEVICES' | translate | capFirst}}</button>
+    </div>
+
+    <div ng-show="objCtrl.working" class="objectsSpinnerContainer">
+      <ion-spinner class="spinner-positive"></ion-spinner>
+    </div>
+
+    <div class="objectCardContainer" ng-hide="objCtrl.working">
+      <div class="objectRepeatingContainer" item-height="240" item-width="100%" ng-repeat="object in objCtrl.objects | filter:objCtrl.search">
+        <div class="card  {{object.active!='true'?'expiredObject':''}}" ng-click="objCtrl.gotoMap(object)">
+          <div class="item item-divider item-title">
+            <div style="flex:1">{{ object.name }}</div>
+            <div class="editObject" ng-click="objCtrl.upOrder($event,object)"><i class="ion-chevron-up"></i></div>
+            <div class="editObject" ng-click="objCtrl.downOrder($event,object)"><i class="ion-chevron-down"></i></div>
+            <div class="editObject" ng-click="objCtrl.editObject($event,object)"><i class="ion-wrench"></i></div>
+          </div>
+
+          <div class="item-text-wrap objectLayout">
+            <div class="iconContainer">
+
+              <div class="objectCardTopRight">
+                <img ng-src="{{objCtrl.baseUrl + object.icon}}">
+                <i style="font-size: 40px;padding-left: 4px; color:red;" class="fa fa-ban"></i>
+              </div>
+
+              <div class="objectCardBottomRight">
+                <!--
+                <img class="objectStatusIcon" ng-src="{{object.statusImageUrl}}">
+                -->
+                <img class="objectStatusIcon" ng-if="object.statusImageUrl == 'img/status-online.png'" src="img/status-online.png">
+                <img class="objectStatusIcon" ng-if="object.statusImageUrl == 'img/status-orange.png'" src="img/status-orange.png">
+                <img class="objectStatusIcon" ng-if="object.statusImageUrl == 'img/status-offline.png'" src="img/status-offline.png">
+                <div>{{ object.status }}</div>
+              </div>
+
+            </div>
+
+            <div class="objectsContainer expiredInfo">
+              {{ 'SUBSCRIPTION_EXPIRED' | translate | capFirst}}
+            </div>
+
+            <div class="objectsContainer">
+
+              <div class="objectRow">
+                <div class="objectKey" style="width:135px;">{{ 'LAST_VALID_LOCATION' | translate | capFirst}}:</div>
+                <div class="objectValue" style="text-align: right; width: 100%;">{{objCtrl.getDtTrackerDate(object)}}</div>
+              </div>
+
+              <div class="objectRow">
+                <div class="objectKey" style="width:135px;"></div>
+                <div class="objectValue" style="text-align: right; width: 100%;">{{objCtrl.getDtTrackerTime(object)}}</div>
+              </div>
+
+              <div class="objectRow" ng-if="object.sim_number.length">
+                <div class="objectKey">{{ 'SIM' | translate | capFirst}}:</div>
+                <div class="objectValue">{{object.sim_number}}</div>
+              </div>
+              <div class="objectRow">
+                <div class="objectKey">{{ 'SPEED' | translate | capFirst}}:</div>
+                <div class="objectValue">{{object.speedwithdisplay}}</div>
+              </div>
+              <div class="objectRow">
+                <div class="objectKey">{{ 'ODOMETER' | translate | capFirst}}:</div>
+                <div class="objectValue">{{object.odowithdisplay}}</div>
+              </div>
+              <div class="objectRow" ng-show="object.showBattery">
+                <div class="objectKey">{{ 'BATTERY' | translate | capFirst}}:</div>
+                <div class="objectValue">{{ object.params.batp }}%</div>
+              </div>
+              <div class="objectRow" ng-show="object.showIgnition">
+                <div class="objectKey">{{ 'IGNITION' | translate | capFirst}}:</div>
+                <div class="objectValue">{{ object.params.ignition }}</div>
+              </div>
+
+            </div>
+
+          </div>
+          <div class="objectExpiryContainer">
+            <div>{{ 'EXPIRY_DATE' | translate | capFirst}}:</div>
+            <div>{{ object.object_expire_dt }}</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </ion-content>
+  <div class="myBackdrop" ng-show="objCtrl.modalOpen" ng-click="objCtrl.modalOpen = false"></div>
+  <div class="myModal" ng-show="objCtrl.modalOpen">
+
+    <div class="item-divider editObject-Title">{{ 'SETTINGS' | translate | capFirst}}<i class="ion-close-round" ng-click="objCtrl.modalOpen = !objCtrl.modalOpen"></i></div>
+
+    <div class="modalSettinsContainer" ng-show="!objCtrl.modalIcons">
+
+      <div class="flexy freqRadio">
+        <button class="updateButton" ng-click="objCtrl.modalIcons = !objCtrl.modalIcons">{{ 'CHANGE_ICON' | translate | capFirst}}</button>
+      </div>
+
+      <div class="flexy freqRadio">
+        <div class="radioTitle">{{ 'UPDATE_INTERVAL' | translate | capFirst}}</div>
+        <div class="radioLabelContainer">
+          <label>
+            <input type="radio" ng-model="objCtrl.update_interval" value="30sec">{{ 'THIRTY_SECONDS' | translate | capFirst}}<div></div>
+          </label>
+          <label>
+            <input type="radio" ng-model="objCtrl.update_interval" value="60sec">{{ 'SIXTY_SECONDS' | translate | capFirst}}<div></div>
+          </label>
+          <label>
+            <input type="radio" ng-model="objCtrl.update_interval" value="5min">{{ 'FIVE_MINUTES' | translate | capFirst}}<div></div>
+          </label>
+          <label>
+            <input type="radio" ng-model="objCtrl.update_interval" value="10min">{{ 'TEN_MINUTES' | translate | capFirst}}<div></div>
+          </label>
+          <label>
+            <input type="radio" ng-model="objCtrl.update_interval" value="disab">{{ 'DISABLED' | translate | capFirst}}<div></div>
+          </label>
+        </div>
+        <button class="updateButton" ng-click="objCtrl.updateSettings('update_interval',objCtrl.update_interval)">{{ 'UPDATE' | translate | capFirst}}</button>
+      </div>
+
+      <div class="flexy freqRadio">
+        <div class="radioTitle">{{ 'LED_INDICATORS' | translate | capFirst}}</div>
+        <div class="radioLabelContainer">
+          <label>
+            <input type="radio" ng-model="objCtrl.led_indicators" value="on">{{ 'ON' | translate | capFirst}}<div></div>
+          </label>
+          <label>
+            <input type="radio" ng-model="objCtrl.led_indicators" value="off">{{ 'OFF' | translate | capFirst}}<div></div>
+          </label>
+        </div>
+        <div class="flexSpacer"></div>
+        <button class="updateButton" ng-click="objCtrl.updateSettings('led_indicators',objCtrl.led_indicators)">{{ 'UPDATE' | translate | capFirst}}</button>
+      </div>
+
+      <div class="flexy freqRadio">
+        <div class="radioTitle">{{ 'HEARTBEAT' | translate | capFirst}}</div>
+        <div class="radioLabelContainer">
+          <label>
+            <input type="radio" ng-model="objCtrl.heartbeat" value="on">{{ 'ON' | translate | capFirst}}<div></div>
+          </label>
+          <label>
+            <input type="radio" ng-model="objCtrl.heartbeat" value="off">{{ 'OFF' | translate | capFirst}}<div></div>
+          </label>
+        </div>
+        <div class="flexSpacer"></div>
+        <button class="updateButton" ng-click="objCtrl.updateSettings('heartbeat',objCtrl.heartbeat)">{{ 'UPDATE' | translate | capFirst}}</button>
+      </div>
+
+    </div>
+
+
+    <div class="editIconContainer" ng-show="objCtrl.modalIcons">
+      <div class="icons">
+        <img ng-click="objCtrl.changeIcon(icon)"
+             class="{{ objCtrl.objectToEdit.icon.indexOf(icon) !== -1 ? 'currentImg':''  }}"
+             ng-src="{{objCtrl.imgBaseUrl + icon}}" ng-repeat="icon in objCtrl.icons">
+      </div>
+    </div>
+
+  </div>
+
+</ion-view>
+
+
+

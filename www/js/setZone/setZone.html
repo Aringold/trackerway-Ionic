@@ -1,0 +1,39 @@
+<ion-view view-title="{{ 'SET_ZONE' | translate | capFirst}}" ng-controller="setZoneController as map" class="setZone">
+  <ion-content id="mapContent" scroll="false">
+    <div data-tap-disabled="true" id="map"></div>
+
+    <!--<div class="leaflet-top leaflet-right leaflet-touch">-->
+      <!--<div class="mapSwitchContainer leaflet-bar leaflet-control">-->
+        <!--<i class="mapIcon ion-map"></i>-->
+        <!--<select id="mapSelect" ng-model="map.mapLayer" ng-options="layer.name for layer in map.mapLayers"></select>-->
+      <!--</div>-->
+    <!--</div>-->
+
+		<div class="tabs" ng-if="!map.form">
+			<a class="tab-item google-map-icon" ng-click="map.openGoogleMaps()">
+        <img class="googleMapsIcon" src="img/google-maps-filled.svg">
+			</a>
+			<a class="tab-item" ng-click="map.showObject()">
+        <i style="font-size: 2.3rem;" class="mapIcon ion-ios-location"></i>
+			</a>
+			<a class="tab-item" ng-click="map.showSelf()">
+        <i class="mapIcon ion-android-locate"></i>
+			</a>
+			<a class="tab-item google-map-icon" ui-sref="listFences">
+        <img class="googleMapsIcon" src="img/zones_white.svg">
+			</a>
+			<a class="tab-item">
+        <i class="mapIcon ion-map"></i>
+        <select id="mapSelect" ng-model="map.mapLayer" ng-options="layer.name for layer in map.mapLayers"></select>
+			</a>
+		</div>
+		<div class="tabs" ng-if="map.form">
+			<a class="tab-item" ng-click="map.deletePoint()">
+        <i class="mapIcon ion-android-delete"></i>
+			</a>
+			<a class="tab-item" ng-click="map.savePoints()">
+        <i class="mapIcon ion-android-done-all"></i>
+			</a>
+		</div>
+	</ion-content>
+</ion-view>

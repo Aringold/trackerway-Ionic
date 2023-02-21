@@ -1,0 +1,9 @@
+<div class="input-wrapper">
+  <input type="text" placeholder="{{ 'SEARCH_DEVICE' | translate | capFirst}}" ng-model="searchObject" style="width: 100%;">
+</div>
+<div class="no-objects text-center" ng-if="!devices.length">{{'NO_OBJECTS' | translate}}</div>
+<div ng-repeat="device in devices | filter:searchObject">
+	<div class="checkbox-list-wrapper">
+		<ion-radio ng-model="selectedItem" ng-value="device.imei" ng-click="selectItem(device)">{{ device.name }}</ion-radio>
+	</div>
+</div>

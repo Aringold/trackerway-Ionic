@@ -1,0 +1,53 @@
+<ion-view view-title="{{ 'HISTORY' | translate | capFirst}}" ng-controller="historyController as history">
+  <ion-content id="historyContent">
+
+    <div ng-show="history.working" class="historySpinnerContainer">
+      <ion-spinner class="spinner-positive"></ion-spinner>
+    </div>
+
+    <div class="list">
+
+      <label class="item-input search-input">
+        <input type="text"
+               ng-change="history.search()"
+               autocorrect="off"
+               autocapitalize="none"
+               ng-model="history.searchValue"
+               placeholder="{{ 'SEARCH_DEVICE' | translate | capFirst}}">
+      </label>
+
+      <label class="item item-input item-select">
+        <div class="input-label">
+          {{ 'DEVICE' | translate | capFirst}}
+        </div>
+        <select ng-model="history.selectedImei">
+          <option value="{{ object.imei }}" ng-repeat="object in history.objects">{{ object.name }}</option>
+        </select>
+      </label>
+
+    </div>
+
+    <ion-list style="margin-top:200px;">
+      <ion-radio ng-model="history.choice" ng-value="'last_hour'">{{ 'LAST_HOUR' | translate | capFirst}}</ion-radio>
+      <ion-radio ng-model="history.choice" ng-value="'today'">{{ 'TODAY' | translate | capFirst}}</ion-radio>
+      <ion-radio ng-model="history.choice" ng-value="'yesterday'">{{ 'YESTERDAY' | translate | capFirst}}</ion-radio>
+      <ion-radio ng-model="history.choice" ng-value="'this_week'">{{ 'THIS_WEEK' | translate | capFirst}}</ion-radio>
+    </ion-list>
+    <button class="button searchButton" ng-click="history.searchPredefined()">{{ 'SEARCH' | translate | capFirst}}</button>
+
+
+    <label class="item item-input fromLabel">
+      <span class="input-label">{{ 'FROM_DATE' | translate | capFirst}}</span>
+      <input ng-model="history.fromCustom" type="date">
+    </label>
+    <label class="item item-input">
+      <span class="input-label">{{ 'TO_DATE' | translate | capFirst}}</span>
+      <input ng-model="history.toCustom" type="date">
+    </label>
+    <button class="button searchButton" ng-click="history.searchCustom()"
+            ng-disabled="(history.fromCustom.getTime() > history.toCustom.getTime()) || (!history.fromCustom || !history.toCustom)">
+      {{ 'SEARCH' | translate | capFirst}}
+    </button>
+
+  </ion-content>
+</ion-view>

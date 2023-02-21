@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+  <meta name="format-detection" content="telephone=no">
+  <meta name="version" content="1.40.2">
+  <title>Spytrack</title>
+  <link rel="manifest" href="manifest.json">
+
+  <!-- un-comment this code to enable service worker
+    <script>
+      if ('serviceWorker' in navigator) {
+        navigator.serviceWorker.register('service-worker.js')
+          .then(() => console.log('service worker installed'))
+          .catch(err => console.log('Error', err));
+      }
+    </script>-->
+
+  <link href="lib/ionic/css/ionic.css" rel="stylesheet">
+  <link href="css/style.css" rel="stylesheet">
+
+  <link href="js/login/login.css" rel="stylesheet">
+  <link href="js/login/register/register.css" rel="stylesheet">
+  <link href="js/home/home.css" rel="stylesheet">
+  <link href="js/gdpr_agreement/gdpr_agreement.css" rel="stylesheet">
+  <link href="js/objects/objects.css" rel="stylesheet">
+  <link href="js/objects/addObject/addObject.css" rel="stylesheet">
+  <link href="js/events/events.css" rel="stylesheet">
+  <link href="js/alerts/alerts.css" rel="stylesheet">
+  <link href="js/create-alert/create-alert.css" rel="stylesheet">
+  <link href="js/history/history.css" rel="stylesheet">
+  <link href="js/map/map.css" rel="stylesheet">
+  <link href="js/setZone/setZone.css" rel="stylesheet">
+  <link href="js/map/listFences/listFences.css" rel="stylesheet">
+  <link href="js/map/addFence/addFence.css" rel="stylesheet">
+  <link href="js/settings/settings.css" rel="stylesheet">
+  <link href="js/settings/privacy/privacy.css" rel="stylesheet">
+  <link href="js/gprs_command/gprs_command.css" rel="stylesheet">
+  <link href="js/myAccount/myAccount.css" rel="stylesheet">
+  <link href="js/reports/reports.css" rel="stylesheet">
+  <link href="js/homepage_customizer/homepage_customizer.css" rel="stylesheet">
+  <link href="js/about_us/about_us.css" rel="stylesheet">
+  <!-- Remove Driver Behavior (not delete!) -->
+  <!-- <link href="js/driver_behavior/driver_behavior.css" rel="stylesheet"> -->
+  <!-- <link href="js/driver_behavior_events_data/driver_behavior_events_data.css" rel="stylesheet"> -->
+
+  <!-- nees to comment out next line of stiles if we going to use way of google maps integration -->
+  <!--<link href="3rdparty/leaflet/leaflet.css" rel="stylesheet">-->
+  <link href="3rdparty/leaflet-1.7.1/leaflet.css" rel="stylesheet">
+
+  <!--
+    <link href="3rdparty/leaflet/markercluster/MarkerCluster.css" rel="stylesheet">
+    <link href="3rdparty/leaflet/markercluster/MarkerCluster.Default.css" rel="stylesheet">
+    -->
+  <link href="3rdparty/leaflet-1.7.1/plugins/Leaflet.markercluster/MarkerCluster.css" rel="stylesheet">
+  <link href="3rdparty/leaflet-1.7.1/plugins/Leaflet.markercluster/MarkerCluster.Default.css" rel="stylesheet">
+  <link href="3rdparty/leaflet-1.7.1/plugins/Leaflet.markercluster/MarkerCluster.Custom.css" rel="stylesheet">
+
+
+  <link href="3rdparty/angular-toastr/angular-toastr.min.css" rel="stylesheet">
+  </link>
+  <link href="3rdparty/angular-bootstrap-colorpicker/colorpicker.min.css" rel="stylesheet">
+  </link>
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+
+  <link href="3rdparty/angular-pdfjs-viewer/www/lib/pdf.js-viewer/viewer.css" rel="stylesheet">
+
+
+  <link rel="stylesheet" href="3rdparty/leaflet-1.7.1/plugins/leaflet-range/L.Control.Range.css" />
+
+  <!-- IF using Sass (run gulp sass first), then uncomment below and remove the CSS includes above
+    <link href="css/ionic.app.css" rel="stylesheet">
+    -->
+
+  <!-- ionic/angularjs js -->
+  <script src="lib/ionic/js/ionic.bundle.js"></script>
+
+  <script src="3rdparty/ng-cordova.min.js"></script>
+  <!-- cordova script (this will be a 404 during development) -->
+  <script src="cordova.js"></script>
+
+  <!-- third-party js -->
+  <script src="lang/angular-translate.min.js"></script>
+  <script src="lang/lang.js"></script>
+
+  <!-- your app's js -->
+  <script src="js/app.js"></script>
+  <script src="js/app.config.js"></script>
+  <script src="js/app.service.js"></script>
+  <script src="js/about_us/about_us.js"></script>
+
+  <script src="js/menu/menu.js"></script>
+
+  <script src="js/providers/api.service.js"></script>
+  <script src="js/providers/caching.service.js"></script>
+  <script src="js/providers/localstorage.service.js"></script>
+
+  <script src="js/models/user.service.js"></script>
+  <script src="js/models/objects.service.js"></script>
+
+  <script src="js/login/login.js"></script>
+  <script src="js/login/logout.js"></script>
+  <script src="js/login/login.service.js"></script>
+  <script src="js/login/register/register.js"></script>
+
+  <script src="js/home/home.js"></script>
+  <script src="js/home/home.service.js"></script>
+
+  <script src="js/gdpr_agreement/gdpr_agreement.js"></script>
+  <script src="js/gdpr_agreement/gdpr_agreement.service.js"></script>
+
+  <script src="js/objects/objects.js"></script>
+  <script src="js/objects/objects.service.js"></script>
+
+  <script src="js/objects/addObject/addObject.js"></script>
+  <script src="js/events/events.js"></script>
+  <script src="js/alerts/alerts.js"></script>
+  <script src="js/alerts/alerts.service.js"></script>
+  <script src="js/create-alert/create-alert.js"></script>
+  <script src="js/create-alert/create-alert.service.js"></script>
+  <script src="js/history/history.js"></script>
+  <script src="js/settings/settings.js"></script>
+  <script src="js/settings/settings.service.js"></script>
+  <script src="js/myAccount/myAccount.js"></script>
+  <script src="js/myAccount/myAccount.service.js"></script>
+  <script src="js/reports/reports.js"></script>
+  <script src="js/reports/reports.service.js"></script>
+  
+  <script src="js/map/map.js"></script>
+  <script src="js/setZone/setZone.js"></script>
+  <script src="js/map/listFences/listFences.js"></script>
+  <script src="js/map/addFence/addFence.js"></script>
+  
+  <script src="js/gprs_command/gprs_command.js"></script>
+  <script src="js/gprs_command/gprs_command.service.js"></script>
+  
+  <script src="js/homepage_customizer/homepage_customizer.js"></script>
+  <script src="js/homepage_customizer/homepage_customizer.service.js"></script>
+
+  <!-- Remove Driver Behavior (not delete!) -->
+  <!-- <script src="js/driver_behavior/driver_behavior.js"></script>
+    <script src="js/driver_behavior/driver_behavior.service.js"></script>
+
+    <script src="js/driver_behavior_events_data/driver_behavior_events_data.js"></script>
+    <script src="js/driver_behavior_events_data/driver_behavior_events_data.service.js"></script> -->
+
+  <!--<script src="3rdparty/leaflet/leaflet.js"></script>-->
+  <script src="3rdparty/leaflet-1.7.1/leaflet.js"></script>
+
+
+  <!-- <script src="3rdparty/leaflet/mapbox.js"></script>-->
+  <script src="3rdparty/leaflet-1.7.1/plugins/mapbox.js/mapbox.standalone.js"></script>
+
+  <!-- looks like this not needed -->
+  <!--<script src="3rdparty/leaflet/marker.rotate.js"></script>-->
+
+  <!--<script src="3rdparty/leaflet/decorator/decorator.js"></script>-->
+  <script src="3rdparty/leaflet-1.7.1/plugins/Leaflet.PolylineDecorator/decorator.js"></script>
+
+  <!--<script src="3rdparty/leaflet/leaflet.editable.js"></script>-->
+  <script src="3rdparty/leaflet-1.7.1/plugins/Leaflet.Editable/leaflet.editable.js"></script>
+
+  <!--<script src="3rdparty/leaflet/MovingMarker.js"></script>-->
+  <script src="3rdparty/leaflet-1.7.1/plugins/Leaflet.MovingMarker/MovingMarker.js"></script>
+
+  <script src="js/util.js"></script>
+
+  <!-- not migrated  plugins -->
+  <!--/* Leaflet Bing Layer 3.0.1 */-->
+  <!-- <script src="3rdparty/leaflet/leaflet.bing.js"></script> -->
+  <script src="3rdparty/leaflet-1.7.1/plugins/leaflet-bing-layer/leaflet-bing-layer.min.js"></script>
+
+  <!--/* google maps */-->
+  <!--<script src="3rdparty/leaflet/googlemaps.js"></script>-->
+  <!--<script src="3rdparty/leaflet/leaflet-google.js"></script>-->
+  <script src="3rdparty/leaflet-1.7.1/plugins/Leaflet.GridLayer.GoogleMutant/Leaflet.GoogleMutant.js"></script>
+
+
+  <!--<script src="3rdparty/leaflet/markercluster/leaflet.markercluster.js"></script>-->
+  <script src="3rdparty/leaflet-1.7.1/plugins/Leaflet.markercluster/leaflet.markercluster.js"></script>
+
+  <!--<script src="3rdparty/leaflet/markercluster/leaflet.markercluster.js"></script>-->
+  <script src="3rdparty/leaflet-1.7.1/plugins/Leaflet.markercluster/leaflet.markercluster.js"></script>
+
+  <script src="3rdparty/leaflet-1.7.1/plugins/Leaflet.hotline/leaflet.hotline.js"></script>
+
+  <script src="3rdparty/gauge/justgage.min.js"></script>
+  <script src="3rdparty/angular-toastr/angular-toastr.tpls.min.js"></script>
+  <script src="3rdparty/chart.js/Chart.min.js"></script>
+
+  <script src="3rdparty/momentjs/moment-with-locales.min.js"></script>
+  <script src="3rdparty/momentjs/moment-timezone-with-data.min.js"></script>
+
+  <script src="3rdparty/angular-bootstrap-colorpicker/bootstrap-colorpicker-module.min.js"></script>
+
+  <script src="3rdparty/angular-pdfjs-viewer/dist/angular-pdfjs-viewer.js"></script>
+  <script src="3rdparty/angular-pdfjs-viewer/www/lib/pdf.js-viewer/pdf.js"></script>
+
+  <script src="lib/ngcordova-wrapper-nativestorage/src/ngcordova-wrapper-nativestorage.js"></script>
+
+  <!-- leaflet plugin for range -->
+  <script src="3rdparty/leaflet-1.7.1/plugins/leaflet-range/L.Control.Range.js"></script>
+  <!--<script src="https://maps.google.com/maps/api/js?v=3.2&sensor=false"></script>-->
+  <!--script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB5mKG-7B1wGgjDMBarn1SsD6ye2UH19k0" async defer></script-->
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCWb7dpzVlQFai9c1JlrweiibL0jO5xMr0" async
+    defer></script>
+</head>
+
+<body ng-app="starter">
+  <ion-side-menus enable-menu-with-back-views="false" ng-controller="menuController as menu">
+    <!-- Left menu -->
+    <ion-side-menu side="left">
+      <ion-header-bar class="bar-stable">
+        <h1 class="title">{{ 'MORE_MENU_TITLE' | translate | capFirst}}</h1>
+      </ion-header-bar>
+      <ion-content>
+        <ion-list>
+          <ion-item ng-repeat="item in menu.sideMenu()" menu-close ui-sref="home({openNestedPage: item.route})"
+            ng-class="{'settingsButton': item.icon == 'icon'}">
+            <i ng-if="item.icon == 'icon'" class="{{item.class}}"></i>
+            <!--
+                      <img ng-if="item.icon == 'img'" ng-attr-src="{{item.src}}">
+                      -->
+            <img ng-if="item.icon == 'img' && item.route == 'gotoAlerts'" src="img/newevent_blue.svg">
+            <img ng-if="item.icon == 'img' && item.route == 'openReports'" src="img/report.svg">
+            <!-- Remove Driver Behavior (not delete!) -->
+            <!-- <img ng-if="item.icon == 'img' && item.route == 'openDriverBehavior'" src="img/movement.svg"> -->
+            <img ng-if="item.icon == 'img' && item.route == 'openListFences'" src="img/zones_red.svg">
+            <img ng-if="item.icon == 'img' && item.route == 'openGprs'" src="img/cmd.svg">
+            <img ng-if="item.icon == 'img' && item.route == 'openAbout'" src="img/app.svg">
+            <span class="buttonText">{{item.title | translate | capFirst}}</span>
+          </ion-item>
+        </ion-list>
+      </ion-content>
+    </ion-side-menu>
+
+    <ion-side-menu-content>
+      <ion-nav-bar class="bar-default nav-title-slide-ios7" align-title="center">
+        <ion-nav-back-button class="button-icon">
+          <i class="ion-chevron-left"></i>
+        </ion-nav-back-button>
+        <ion-nav-buttons side="right">
+          <button class="button-icon logout-button" ng-click="logout.logout()"
+            ng-controller="logoutController as logout">
+            <img src="img/logout-icon.svg" alt="logout button">
+          </button>
+        </ion-nav-buttons>
+      </ion-nav-bar>
+      <ion-nav-view></ion-nav-view>
+    </ion-side-menu-content>
+  </ion-side-menus>
+</body>
+
+</html>

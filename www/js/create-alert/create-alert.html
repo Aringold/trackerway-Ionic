@@ -1,0 +1,124 @@
+<ion-view view-title="{{ 'CREATE_ALERT' | translate | capFirst}}" ng-controller="createAlertController as alertCrud">
+  <ion-content class="neweventContent">
+    <div class="alertsContainer">
+      <div class="button-wrapper">
+        <button class="button" ng-click="alertCrud.openAlerts()">{{'VIEW_ALERTS' | translate}}</button>
+      </div>
+      <div ng-if="alertCrud.isFormHidden">
+        <div class="row">
+          <div class="col event-type moving" ng-click="alertCrud.createAlert('MOVEMENT_ALERT')">
+            <div class="content"><div class="label">{{'MOVING' | translate}}</div></div>
+          </div>
+          <div class="col event-type overspeed" ng-click="alertCrud.createAlert('SPEEDING_ALERT')">
+            <div class="content"><div class="label">{{'OVERSPEED' | translate}}</div></div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col event-type zone-in" ng-click="alertCrud.createAlert('ZONE_IN_ALERT')">
+            <div class="content"><div class="label">{{'ZONE_IN' | translate}}</div></div>
+          </div>
+          <div class="col event-type zone-out" ng-click="alertCrud.createAlert('ZONE_IN_OUT_ALERT')">
+            <div class="content"><div class="label">{{'ZONE_OUT' | translate}}</div></div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col event-type connection-no" ng-click="alertCrud.createAlert('CONNECTION_NO_ALERT')">
+            <div class="content"><div class="label">{{'CONNECTION_NO' | translate}}</div></div>
+          </div>
+          <div class="col event-type custom" ng-click="alertCrud.createAlert(null)">
+            <div class="content"><div class="label">{{'CUSTOM' | translate}}</div></div>
+          </div>
+        </div>
+      </div>
+      <div ng-if="!alertCrud.isFormHidden" class="formContainer">
+        <label class="item item-input item-radio-select">
+          <div class="input-label">
+            {{ 'ALERT_TYPE' | translate | capFirst}}
+          </div>
+          <button class="button empty" ng-click="alertCrud.selectType()">{{ alertCrud.formatAlertType() }}</button>
+        </label>
+        <div class="input-wrapper">
+          <span>{{ 'EVENT_NAME' | translate }}:</span>
+          <input type="text" placeholder="{{ 'EVENT_NAME_PLACEHOLDER' | translate }}" ng-model="alertCrud.newAlert.name" maxlength="25">
+        </div>
+        <div class="input-wrapper">
+          <p ng-if="alertCrud.newAlert.objects.length"><strong>{{ 'ALERT_OBJECTS' | translate }}:&nbsp;</strong>{{ alertCrud.formatObjects() }}</p>
+          <p ng-if="!alertCrud.newAlert.objects.length">{{ 'OBJECTS_LIST_EMPTY' | translate }}</p>
+        </div>
+        <div class="button-wrapper">
+          <button class="button" ng-click="alertCrud.selectObjects()">{{ 'ALERT_OBJECT_PLACEHOLDER' | translate }}</button>
+        </div>
+        <div class="input-wrapper" ng-if="alertCrud.newAlert.eventType == 'SPEEDING_ALERT'">
+          <span>{{ 'ALERT_SPEED_LIMIT' | translate }}:</span>
+          <input type="number" placeholder="{{ 'ALERT_SPEED_LIMIT_PLACEHOLDER' | translate }}" ng-model="alertCrud.newAlert.speed_limit">
+        </div>
+        <div class="input-wrapper" ng-if="alertCrud.newAlert.eventType == 'ZONE_IN_ALERT' || alertCrud.newAlert.eventType == 'ZONE_IN_OUT_ALERT'">
+          <p ng-if="alertCrud.newAlert.zones.length"><strong>{{ 'ALERT_ZONES' | translate }}:&nbsp;</strong>{{ alertCrud.formatZones() }}</p>
+          <p ng-if="!alertCrud.newAlert.zones.length">{{ 'ZONES_LIST_EMPTY' | translate }}</p>
+        </div>
+        <div class="button-wrapper" ng-if="alertCrud.newAlert.eventType == 'ZONE_IN_ALERT' || alertCrud.newAlert.eventType == 'ZONE_IN_OUT_ALERT'">
+          <button class="button" ng-click="alertCrud.selectZones()">{{ 'ALERT_ZONES_PLACEHOLDER' | translate }}</button>
+        </div>
+        <div class="toggle-wrapper flex-row">
+          <span>{{ 'ALERT_IS_ACTIVE' | translate }}</span>
+          <label class="switch">
+            <input ng-model="alertCrud.newAlert.isActive" type="checkbox" class="ng-pristine ng-untouched ng-valid ng-empty">
+            <div class="sliderT round">
+            </div>
+          </label>
+        </div>
+        <div class="toggle-wrapper flex-row">
+          <span>{{ 'ALERT_SYSTEM_MESSAGE' | translate }}</span>
+          <label class="switch">
+            <input ng-model="alertCrud.newAlert.system_alert" type="checkbox" class="ng-pristine ng-untouched ng-valid ng-empty">
+            <div class="sliderT round">
+            </div>
+          </label>
+        </div>
+        <div class="toggle-wrapper flex-row">
+          <span>{{ 'ALERT_MESSAGE_TO_EMAIL' | translate }}</span>
+          <label class="switch">
+            <input ng-model="alertCrud.newAlert.alert_to_email" type="checkbox" class="ng-pristine ng-untouched ng-valid ng-empty">
+            <div class="sliderT round">
+            </div>
+          </label>
+        </div>
+        <div class="input-wrapper" ng-if="alertCrud.newAlert.alert_to_email">
+          <div class="label-group">
+            <span>{{ 'ALERT_EMAILS_LABEL' | translate }}:</span>
+            <button class="button button-settings" ng-click="alertCrud.addField(alertCrud.newAlert.emails)"><i class="ion-ios-plus"></i></button>
+          </div>
+          <div class="input-group-wrapper">
+            <div class="input-group" ng-repeat="str in alertCrud.newAlert.emails track by $index">
+              <input type="email" placeholder="{{ 'ENTER_EMAIL' | translate }}" ng-model="alertCrud.newAlert.emails[$index]" maxlength="255">
+              <button class="button button-settings" ng-click="alertCrud.removeField(alertCrud.newAlert.emails, $index)"><i class="ion-ios-minus"></i></button>
+            </div>
+          </div>
+        </div>
+        <div class="toggle-wrapper flex-row">
+          <span>{{ 'ALERT_SMS_TO_MOBILE' | translate }}</span>
+          <label class="switch">
+            <input ng-model="alertCrud.newAlert.alert_to_sms" type="checkbox" class="ng-pristine ng-untouched ng-valid ng-empty">
+            <div class="sliderT round">
+            </div>
+          </label>
+        </div>
+        <div class="input-wrapper" ng-if="alertCrud.newAlert.alert_to_sms">
+          <div class="label-group">
+            <span>{{ 'ALERT_SMS_LABEL' | translate }}:</span>
+            <button class="button button-settings" ng-click="alertCrud.addField(alertCrud.newAlert.phones)"><i class="ion-ios-plus"></i></button>
+          </div>
+          <div class="input-group-wrapper">
+            <div class="input-group" ng-repeat="str in alertCrud.newAlert.phones track by $index">
+              <input type="tel" placeholder="{{ 'ENTER_PHONE' | translate }}" ng-model="alertCrud.newAlert.phones[$index]" maxlength="255">
+              <button class="button button-settings" ng-click="alertCrud.removeField(alertCrud.newAlert.phones, $index)"><i class="ion-ios-minus"></i></button>
+            </div>
+          </div>
+        </div>
+        <div class="button-wrapper">
+          <button class="button" ng-disabled="!alertCrud.isValid()" ng-click="alertCrud.save()">{{ 'ALERT_SAVE' | translate }}</button>
+        </div>
+      </div>
+    </div>
+  </ion-content>
+</ion-view>

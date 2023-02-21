@@ -1,0 +1,102 @@
+<ion-view class="trackerConfigView" view-title="Live Tracking Setup" ng-controller="liveTrackingSetupController as liveTracking">
+  <ion-content>
+    <div class="liveTrackingSetupContainer">
+      <div class="selectedObject">
+        <span style="width: 4rem;display: inline-block;">Object:</span>
+        <span>{{liveTracking.object.name}}</span>
+      </div>
+      <div class="selectedType">
+        <span style="width: 4rem;display: inline-block;">Type:</span>
+        <span>{{liveTracking.type.name}}</span>
+      </div>
+      <div class="selectedObject">
+        <span style="width: 4rem;display: inline-block;"></span>
+        <span>{{liveTracking.type.type}}</span>
+      </div>
+
+      <div class="liveTrackingCommands">
+        <div class="list scroll">
+
+
+          <div class="item item-button-right">
+            <div style="flex:5;" class="commandTitle">
+              Turn Web Tracking On
+            </div>
+            <button ng-click="liveTracking.turnWebTrackingOn()" class="button button-outline button-positive">
+              Send
+            </button>
+          </div>
+
+          <div class="item item-button-right">
+            <div style="flex:5;" class="commandTitle">
+              <div>Select Server</div>
+              <select>
+                <option>GpsLive</option>
+                <option>GpsLive Premium</option>
+              </select>
+            </div>
+            <button class="button button-outline button-positive">
+              Send
+            </button>
+          </div>
+
+          <div class="item item-button-right">
+            <div style="flex:5;">
+              <div class="commandTitle">Location Update Frequency</div>
+              <select>
+                <option>10 Seconds</option>
+                <option>30 Seconds</option>
+                <option>1 Minute</option>
+                <option>5 Minutes</option>
+                <option>10 Minutes</option>
+              </select>
+            </div>
+            <button class="button button-outline button-positive">
+              Send
+            </button>
+          </div>
+
+
+          <div class="item item-button-right">
+            <div style="flex:5;">
+              <div class="commandTitle">Access Point Network</div>
+              <select>
+                <option>Lyca Mobile UK</option>
+                <option>Lebara UK</option>
+                <option>EE & Orange UK</option>
+                <option>Giff Gaff UK</option>
+                <option>O2 PAY&GO UK</option>
+                <option>O2 Contract UK</option>
+                <option>Vodafone</option>
+                <option>Custom Apn</option>
+              </select>
+            </div>
+            <button class="button button-outline button-positive">
+              Send
+            </button>
+          </div>
+
+          <div class="item item-button-right">
+            <div style="flex:5;" class="commandTitle">
+              Gprs Economy Mode
+            </div>
+            <button class="button button-outline button-positive">
+              Send
+            </button>
+          </div>
+
+          <div class="item item-button-right">
+            <div style="flex:5;" class="commandTitle">
+              Standby Mode
+            </div>
+            <button class="button button-outline button-positive">
+              Send
+            </button>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </ion-content>
+</ion-view>

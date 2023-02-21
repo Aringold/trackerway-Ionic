@@ -1,0 +1,5 @@
+<div ng-repeat="layer in layers">
+	<div class="checkbox-list-wrapper">
+		<ion-radio ng-model="selectedItem" ng-value="layer" ng-click="selectItem(layer)">{{ layer.name }}</ion-radio>
+	</div>
+</div>

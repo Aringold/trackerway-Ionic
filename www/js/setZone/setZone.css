@@ -1,0 +1,174 @@
+#mapContent .scroll {
+    height: 100%;
+}
+
+#mapContent #map {
+    width: 100%;
+    height: 100%;
+}
+
+#mapContent .leaflet-bottom.leaflet-right {
+    display: none;
+}
+
+#mapContent .mapSwitchContainer {
+    background: #fff;
+    padding: 5px;
+    width: 55px;
+    height: 55px;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    margin: .3rem;
+}
+
+#mapContent .mapIcon {
+    font-size: 2.3rem;
+    color: #2d71ce;
+}
+
+#mapSelect {
+    position: absolute;
+    top: 0px;
+    left: 0;
+    z-index: 1;
+    color: rgba(0, 0, 0, 0);
+    background: rgba(0, 0, 0, 0);
+    width: 100%;
+    height: 100%;
+    border: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    text-indent: 1px;
+    text-overflow: '';
+}
+.scale-zone {
+    position: absolute;
+    top: 10%;
+    left: 15%;
+}
+.mapPopupContainer {
+    display: flex;
+    min-width: 13rem;
+    flex-wrap: wrap;
+}
+
+.popupKey {
+    width: 25%;
+    margin-top: .2rem;
+}
+
+.mapPopupContainer .address {
+    /*display: none;*/
+    width: 100%;
+}
+
+.popupValue {
+    width: 70%;
+    padding-left: 1rem;
+    margin-top: .2rem;
+}
+
+.mapDivIcon {
+    display: flex !important;
+    flex-direction: row;
+    align-items: center;
+    width: auto !important;
+    height: auto !important;
+    /*padding: 0px 4px;*/
+    /*margin-left: -19px !important;*/
+    /*margin-top: -13px !important;*/
+    /*background: rgba(120,120,120,.32);*/
+}
+
+.mapDivSpan {
+    transform: none !important;
+    text-align: center;
+    max-width: 230px;
+    white-space: nowrap;
+    overflow: hidden !important;
+    text-overflow: ellipsis;
+    background: rgba(255, 255, 255, 1);
+    font-family: century gothic;
+    padding: 2px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 20px;
+    border: 2px solid rgba(0, 0, 0, .2);
+    margin-left: 5px;
+}
+
+.mapDivImage {
+    height: 54px;
+    width: 54px;
+    /*transform-origin: center bottom 0px;*/
+}
+
+.zoneTooltip {
+    text-align: center;
+    max-width: 130px;
+    white-space: nowrap;
+    overflow: hidden !important;
+    text-overflow: ellipsis;
+    background: rgba(255, 255, 255, 1);
+    font-family: century gothic;
+    padding: 0 5px;
+    justify-content: center;
+    align-items: center;
+    height: 20px !important;
+    width: auto !important;
+    border: 2px solid rgba(0, 0, 0, .2);
+    margin: 0 !important;
+    margin-left: -28px !important;
+    margin-top: -10px !important;
+}
+
+.arrowIconCls {
+    margin-top: -20px;
+}
+
+.leaflet-marker-icon {
+}
+
+.leaflet-left.leaflet-bottom.leaflet-touch {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    width: 100%;
+}
+
+.googleMapsIcon {
+    width: 35px;
+}
+
+#mapContent .mapSwitchContainer:active {
+    background: #ddd;
+}
+.tabs {
+	z-index: 5000;
+	padding-top: 0px;
+	background-color: #2B82D4;
+}
+.setZone .tabs .tab-item {
+	opacity: 1;
+	border: 1px solid #ffffff;
+	border-right: 0px;
+	border-bottom: 0px;
+	max-width: inherit;
+}
+.tabs .tab-item:first-child {
+	border-left: 0px;
+}
+#mapContent .tabs .tab-item .mapIcon {
+	color: #ffffff;
+}
+.tabs .google-map-icon img {
+	padding-top: 7px;
+	width: 32px;
+}
+.tabs .tab-item #mapSelect {
+	left: auto;
+	right: 0;
+	width: 25%;
+}

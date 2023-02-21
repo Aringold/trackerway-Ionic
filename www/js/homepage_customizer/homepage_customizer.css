@@ -1,0 +1,34 @@
+.platform-ios .homepageSettingsContainer {
+  position: relative;
+  top: 0px;
+  padding: 1rem;
+}
+
+.homepageSettingsContainer {
+  position: relative;
+  top: 0px;
+  padding: 1rem;
+}
+
+
+.sensors {
+  font-size: 1rem;
+  display: flex;
+  align-items: center;
+  margin-bottom: 1rem;
+  margin-left: 1rem;
+}
+
+.object {
+  font-size: 1rem;
+  display: flex;
+  align-items: center;
+  margin-bottom: 1rem;
+  font-weight: bold;
+}
+
+.sensors span {
+  display: block;
+  position: relative;
+  top: -3px;
+}

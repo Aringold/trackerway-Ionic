@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="904px" height="776px" viewBox="0 0 904 776" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 49.3 (51167) - http://www.bohemiancoding.com/sketch -->
+    <title>Slice 1</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <filter x="-0.8%" y="-0.7%" width="101.6%" height="101.8%" filterUnits="objectBoundingBox" id="filter-1">
+            <feOffset dx="0" dy="2" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>
+            <feGaussianBlur stdDeviation="2" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
+            <feColorMatrix values="0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.5 0" type="matrix" in="shadowBlurOuter1" result="shadowMatrixOuter1"></feColorMatrix>
+            <feMerge>
+                <feMergeNode in="shadowMatrixOuter1"></feMergeNode>
+                <feMergeNode in="SourceGraphic"></feMergeNode>
+            </feMerge>
+        </filter>
+    </defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Octicons-terminal" filter="url(#filter-1)" transform="translate(4.000000, 2.000000)" fill="#2B82D4" fill-rule="nonzero">
+            <path d="M832,0 L64,0 C28.65,0 0,28.65 0,64 L0,704 C0,739.35 28.65,768 64,768 L832,768 C867.35,768 896,739.35 896,704 L896,64 C896,28.65 867.35,0 832,0 Z M128,448 L256,320 L128,192 L192,128 L384,320 L192,512 L128,448 Z M640,512 L384,512 L384,448 L640,448 L640,512 Z" id="Shape"></path>
+        </g>
+    </g>
+</svg>

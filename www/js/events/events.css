@@ -1,0 +1,52 @@
+.eventsContent {
+  padding: 1rem;
+  font-size: 2rem;
+}
+
+.eventsContent .scroll {
+  height: 100%;
+}
+
+.eventsSpinnerContainer {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+}
+
+.eventsTable {
+  width: 100%;
+  min-height: 5rem;
+}
+
+.eventDesc {
+  font-size: .8rem;
+  /*color: rgba(0, 0, 0, .5);*/
+}
+
+.eventCardContainer {
+  padding-right: 1.4rem;
+}
+
+.eventRepeatingContainer {
+  width: 100% !important;
+  margin-bottom: 1rem;
+}
+
+.eventCardContainer .card {
+  width: 100% !important;
+  margin-top: 0;
+}
+
+.eventsListContainer {
+  position: absolute;
+  left: 0;
+  width: 100%;
+
+}
+
+.item.item-divider {
+	background-color: #2B82D4;
+}

@@ -1,0 +1,141 @@
+<ion-view class="driverBehaviorView" view-title="{{ 'DRIVER_BEHAVIOR' | translate }}" ng-controller="driverBehaviorController as ctrl">
+  <ion-content class="driverBehaviorContent">
+    <div ng-show="ctrl.working" class="spinner-container">
+      <ion-spinner class="spinner-positive"></ion-spinner>
+    </div>
+
+    <div ng-show="!ctrl.working && !ctrl.hasEvents.overspeed && !ctrl.hasEvents.engidle" class="no-events">
+      <p>{{'DRIVER_BEHAVIOR_YOU_HAVE_NO_EVENTS' | translate}}</p>
+      <button class="button searchButton" ng-click="ctrl.openAlerts()">{{ 'DRIVER_BAHEVIOR_ADD_NEW_ALERTS' | translate | capFirst}}</button>
+    </div>
+    <div ng-show="!ctrl.working && ctrl.hasEvents.overspeed && !ctrl.hasEvents.engidle" class="no-events">
+      <p>{{'DRIVER_BEHAVIOR_YOU_HAVE_NO_ENGIDLE_EVENTS' | translate}}</p>
+      <button class="button searchButton" ng-click="ctrl.openAlerts()">{{ 'DRIVER_BAHEVIOR_ADD_NEW_ALERTS' | translate | capFirst}}</button>
+    </div>
+    <div ng-show="!ctrl.working && !ctrl.hasEvents.overspeed && ctrl.hasEvents.engidle" class="no-events">
+      <p>{{'DRIVER_BEHAVIOR_YOU_HAVE_NO_OVERSPEED_EVENTS' | translate}}</p>
+      <button class="button searchButton" ng-click="ctrl.openAlerts()">{{ 'DRIVER_BAHEVIOR_ADD_NEW_ALERTS' | translate | capFirst}}</button>
+    </div>
+
+    <div ng-show="!ctrl.working && ctrl.hasEvents.overspeed && ctrl.hasEvents.engidle">
+      <button class="button searchButton" ng-click="ctrl.openEventsData()">{{ 'EVENTS_DATA' | translate | capFirst}}</button>
+      <label class="item item-input item-select">
+        <div class="input-label">
+          {{ 'VEHICLES' | translate | capFirst}}
+        </div>
+        <button class="button empty" ng-click="ctrl.selectObject()">{{ ctrl.vehicle.name }}</button>
+      </label>
+      <div ng-if="ctrl.vehicle.imei == null" class="row row-top overview">
+        <div class="col col-50 counter">
+          <div class="row row-center">
+            <div class="col icon text-center"><img src="img/movement.svg" /></div>
+            <div class="col counter-value-large text-center">{{ctrl.overview.vehicles}}</div>
+          </div>
+          <div class="row counter-title"><div class="col text-center">{{'DRIVER_BEHAVIOR_VEHICLES_COUNTER' | translate}}</div></div>
+        </div>
+        <div class="col col-50 counter">
+          <div class="row row-center">
+            <div class="col icon text-center"><img src="img/overspeed.svg" /></div>
+            <div class="col counter-value-large text-center">{{ctrl.overview.overspeed}}</div>
+          </div>
+          <div class="row counter-title"><div class="col text-center">{{'DRIVER_BEHAVIOR_OVERSPEED_COUNTER' | translate}}</div></div>
+        </div>
+      </div>
+      <div ng-if="ctrl.vehicle.imei == null" class="row row-top overview">
+        <div class="col col-50 counter">
+          <div class="row row-center">
+            <div class="col icon text-center"><img src="img/engine_idle.svg" /></div>
+            <div class="col counter-value-large text-center">{{ctrl.overview.idling}}</div>
+          </div>
+          <div class="row counter-title"><div class="col text-center">{{'DRIVER_BEHAVIOR_ENGIDLE_COUNTER' | translate}}</div></div>
+        </div>
+        <div class="col col-50 counter">
+          <div class="row row-center">
+            <div class="col icon text-center"><img src="img/newevent_blue.svg" /></div>
+            <div class="col counter-value-large text-center">{{ctrl.overview.total}}</div>
+          </div>
+          <div class="row counter-title"><div class="col text-center">{{'DRIVER_BEHAVIOR_TOTAL_COUNTER' | translate}}</div></div>
+        </div>
+      </div>
+      <div ng-if="ctrl.vehicle.imei != null" class="row row-top vehicle-details">
+        <div class="col col-50 counter">
+          <div class="row row-center">
+            <div ng-if="ctrl.vehicle.rating == 'A+'" class="col counter-value-large vehicle-rating rating-a-plus text-center">A<sup>+</sup></div>
+            <div ng-if="ctrl.vehicle.rating == 'A'" class="col counter-value-large vehicle-rating rating-a text-center">A</div>
+            <div ng-if="ctrl.vehicle.rating == 'B'" class="col counter-value-large vehicle-rating rating-b text-center">B</div>
+            <div ng-if="ctrl.vehicle.rating == 'C'" class="col counter-value-large vehicle-rating rating-c text-center">C</div>
+            <div ng-if="!ctrl.vehicle.rating" class="col counter-value-large vehicle-rating text-center">&mdash;</div>
+          </div>
+          <div class="row counter-title"><div class="col text-center">{{'DRIVER_BEHAVIOR_VEHICLE_SCORE' | translate}}</div></div>
+        </div>
+        <div class="col col-50 counter">
+          <div class="row row-center">
+            <div class="col icon text-center"><img src="img/overspeed.svg" /></div>
+            <div class="col counter-value-large text-center">{{ctrl.vehicle.overspeed}}</div>
+          </div>
+          <div class="row counter-title"><div class="col text-center">{{'DRIVER_BEHAVIOR_OVERSPEED_COUNTER' | translate}}</div></div>
+        </div>
+      </div>
+      <div ng-if="ctrl.vehicle.imei != null" class="row row-top vehicle-details">
+        <div class="col col-50 counter">
+          <div class="row row-center">
+            <div class="col icon text-center"><img src="img/engine_idle.svg" /></div>
+            <div class="col counter-value-large text-center">{{ctrl.vehicle.idling}}</div>
+          </div>
+          <div class="row counter-title"><div class="col text-center">{{'DRIVER_BEHAVIOR_ENGIDLE_COUNTER' | translate}}</div></div>
+        </div>
+        <div class="col col-50 counter">
+          <div class="row row-center">
+            <div class="col icon text-center"><img src="img/newevent_blue.svg" /></div>
+            <div class="col counter-value-large text-center">{{ctrl.vehicle.total}}</div>
+          </div>
+          <div class="row counter-title"><div class="col text-center">{{'DRIVER_BEHAVIOR_TOTAL_COUNTER' | translate}}</div></div>
+        </div>
+      </div>
+      <div ng-if="ctrl.vehicle.imei == null" class="row row-top ratings">
+        <div class="col col-50 counter">
+          <div class="row row-center rating rating-a-plus">
+            <div class="col rating-title text-center">A<sup>+</sup></div>
+            <div class="col rating-counter text-center">{{ctrl.overview.ratings[0]}}</div>
+          </div>
+        </div>
+        <div class="col col-50 counter">
+          <div class="row row-center rating rating-a">
+            <div class="col rating-title text-center">A</div>
+            <div class="col rating-counter text-center">{{ctrl.overview.ratings[1]}}</div>
+          </div>
+        </div>
+      </div>
+      <div ng-if="ctrl.vehicle.imei == null" class="row row-top ratings">
+        <div class="col col-50 counter">
+          <div class="row row-center rating rating-b">
+            <div class="col rating-title text-center">B</div>
+            <div class="col rating-counter text-center">{{ctrl.overview.ratings[2]}}</div>
+          </div>
+        </div>
+        <div class="col col-50 counter">
+          <div class="row row-center rating rating-c">
+            <div class="col rating-title text-center">C</div>
+            <div class="col rating-counter text-center">{{ctrl.overview.ratings[3]}}</div>
+          </div>
+        </div>
+      </div>
+      <div ng-if="ctrl.vehicle.imei == null" class="row row-top charts">
+        <div class="col col-50 rating-overview-chart">
+          <div class="chart-label">{{ 'RATING_OVERVIEW' | translate }}</div>
+          <canvas id="rating-overview" class="chart chart-doughnut" width="160px" height="160px"></canvas> 
+        </div>
+        <div class="col col-50 events-overview-chart">
+          <div class="chart-label">{{ 'EVENTS_OVERVIEW' | translate }}</div>
+          <canvas id="events-overview" class="chart chart-doughnut" width="160px" height="160px"></canvas> 
+        </div>
+      </div>
+      <div ng-if="ctrl.vehicle.imei != null" class="row row-top charts">
+        <div class="col vehicle-ratings-chart">
+          <div class="chart-label">{{ 'VEHICLE_RATING_OVERVIEW' | translate }}</div>
+          <canvas id="vehicle-ratings" class="chart chart-doughnut" width="340px" height="260px"></canvas> 
+        </div>
+      </div>
+    </div>
+  </ion-content>
+</ion-view>

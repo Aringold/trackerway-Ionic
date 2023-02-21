@@ -1,0 +1,14 @@
+<div class="input-wrapper">
+  <input type="text" placeholder="{{ 'SEARCH_DEVICE' | translate | capFirst}}" ng-model="searchObject" style="width: 100%;">
+</div>
+<div class="no-objects text-center" ng-if="!objects.length">{{'NO_OBJECTS_FOR_EVENT' | translate}}</div>
+<div ng-repeat="object in objects | filter:searchObject">
+	<div class="toggle-wrapper flex-row">
+		<span>{{ object.name }}</span>
+		<label class="switch">
+			<input ng-model="object.selected" type="checkbox" class="ng-pristine ng-untouched ng-valid ng-empty">
+			<div class="sliderT round">
+			</div>
+		</label>
+	</div>
+</div>

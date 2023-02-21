@@ -1,0 +1,12 @@
+.trackerConfigContainer {
+  position: relative;
+  padding: 1rem;
+}
+
+.addObjectButtonContainer {
+  margin-bottom: 20px;
+}
+
+.addObjectButtonContainer button {
+  width: 100%;
+}

@@ -1,0 +1,49 @@
+<ion-view class="trackerConfigView" view-title="Add New Object" ng-controller="addObjectController as object">
+    <div class="addObjectContainer">
+
+      <form class="addObjectForm">
+        <table>
+          <tr>
+            <td style="width:7rem;"><label class="item-input">Name:</label></td>
+            <td><input type="text" required
+                       autocorrect="off" autocapitalize="none"
+                       ng-model="object.formData.name">
+            </td>
+          </tr>
+
+          <tr>
+            <td><label class="item-input">IMEI:</label></td>
+            <td><input type="number" required
+                       minlength="15" maxlength="16" max="9999999999999999"
+                       autocorrect="off" autocapitalize="none"
+                       ng-model="object.formData.imei">
+            </td>
+          </tr>
+
+          <tr>
+            <td><label class="item-input">Sim card number:</label></td>
+            <td><input type="tel" required
+                       autocorrect="off" autocapitalize="none"
+                       ng-model="object.formData.simnumber">
+            </td>
+          </tr>
+
+          <tr>
+            <td><label class="item-input">GPS device:</label></td>
+            <td>
+              <select ng-model="object.formData.device">
+                <option value="{{ objectType.name }}" ng-repeat="objectType in object.objectTypes">{{ objectType.name }}</option>
+              </select>
+            </td>
+          </tr>
+
+        </table>
+      </form>
+
+      <div class="buttonContainer">
+        <ion-spinner style="display: inline;" ng-show="object.working" class="spinner-positive"></ion-spinner>
+        <button ng-show="!object.working" class="button" ng-click="object.save()">Save</button>
+      </div>
+
+    </div>
+</ion-view>

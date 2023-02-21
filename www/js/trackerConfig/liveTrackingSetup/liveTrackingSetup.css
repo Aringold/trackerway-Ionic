@@ -1,0 +1,47 @@
+.liveTrackingSetupContainer {
+  padding: 1rem;
+  /*position: relative;*/
+  /*top: 44px;*/
+}
+
+.selectedObject {
+  margin-bottom: 1rem;
+}
+
+.liveTrackingCommands select {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  border: 1px solid rgba(0, 0, 0, .1);
+  border-radius: 0;
+  background: #fff;
+  margin: .3rem 0 0 0;
+  padding: 0 0 0 .3rem;
+  width: 8rem;
+}
+
+.liveTrackingCommands .item {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.liveTrackingCommands .item-button-right, .liveTrackingCommands a.item.item-button-right, .liveTrackingCommands button.item.item-button-right {
+  padding-right: 1rem;
+  margin-bottom: 1rem;
+}
+
+html body .liveTrackingCommands button.button {
+  width: 68px;
+  height: 34px;
+  margin-top: -17px;
+  top: 50%;
+}
+
+.commandTitle {
+  width: 182px;
+  white-space: nowrap;
+  overflow: hidden !important;
+  text-overflow: ellipsis;
+  font-size: 14px;
+}

@@ -1,0 +1,11 @@
+<div class="no-zones text-center" ng-if="!zones.length">{{'NO_ZONES_FOR_EVENT' | translate}}</div>
+<div ng-repeat="zone in zones">
+	<div class="toggle-wrapper flex-row">
+		<span>{{ zone.name }}</span>
+		<label class="switch">
+			<input ng-model="zone.selected" type="checkbox" class="ng-pristine ng-untouched ng-valid ng-empty">
+			<div class="sliderT round">
+			</div>
+		</label>
+	</div>
+</div>

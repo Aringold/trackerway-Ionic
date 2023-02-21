@@ -1,0 +1,65 @@
+<ion-view class="trackerConfigView" view-title="{{ addFence.formData.id == 'false' ? 'ADD_ZONE' : 'EDIT_ZONE' | translate}}" ng-controller="addFenceController as addFence">
+  <div class="addFenceContainer">
+
+    <form class="addFenceForm">
+      <label class="item-input">
+        <input type="text" required
+               autocorrect="off" autocapitalize="none"
+               ng-model="addFence.formData.name"
+							 placeholder="{{'ZONE_NAME' | translate}}">
+      </label>
+
+      <label class="item-input item-toggler">
+				<div class="label">{{ 'GROUP' | translate | capFirst}}</div>
+				<div class="toggler">
+					<select ng-options="group as group.name for group in addFence.groups track by group.id" ng-model="group"></select>
+				</div>
+			</label>
+
+      <!--label class="item-input">
+        <input type="text" required 
+               autocorrect="off" autocapitalize="none"
+               ng-model="addFence.formData.color"
+							 placeholder="{{'COLOR' | translate | capFirst}}">
+			</label -->
+
+      <label class="item-input item-toggler">
+				<div class="label label-toggler">{{ 'ZONE_VISIBLE' | translate | capFirst}}</div>
+				<div class="toggler">
+					<label class="switch">
+						<input type="checkbox" ng-model="addFence.formData.visible">
+						<div class="sliderT round"></div>
+					</label>
+				</div>
+			</label>
+
+      <label class="item-input item-toggler">
+				<div class="label label-toggler">{{ 'NAME_VISIBLE' | translate | capFirst}}</div>
+				<div class="toggler">
+					<label class="switch">
+						<input type="checkbox" ng-model="addFence.formData.name_visible">
+						<div class="sliderT round"></div>
+					</label>
+				</div>
+			</label>
+
+      <!-- label class="item-input item-toggler">
+				<div class="label">{{ 'MEASURE_AREA' | translate | capFirst}}</div>
+				<div class="toggler">
+					<select ng-options="area for area in addFence.areas" ng-model="area"></select>
+				</div>
+			</label -->
+    </form>
+
+    <div class="buttonContainer">
+      <ion-spinner style="display: inline;" ng-show="object.working" class="spinner-positive"></ion-spinner>
+			<button class="button" ui-sref="setZone({form: addFence.formData})">{{'SET_ZONE_ON_MAP' | translate | capFirst}}</button>
+    </div>
+
+    <div class="buttonContainer">
+      <ion-spinner style="display: inline;" ng-show="object.working" class="spinner-positive"></ion-spinner>
+			<button ng-show="!object.working" class="button" ng-click="addFence.save()">{{'SAVE' | translate | capFirst}}</button>
+    </div>
+
+  </div>
+</ion-view>

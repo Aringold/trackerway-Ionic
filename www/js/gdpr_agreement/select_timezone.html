@@ -1,0 +1,11 @@
+<div class="formContainer">
+	<div class="input-wrapper filter-input">
+		<input type="text" placeholder="{{ 'FILTER' | translate }}" ng-model="filterValue" maxlength="25">
+	</div>
+</div>
+
+<div ng-repeat="item in timezone | filter:filterValue">
+	<div class="checkbox-list-wrapper select-list">
+		<ion-radio ng-model="selectedItem" ng-value="item.value" ng-click="selectItem(item)">{{item.title}}</ion-radio>
+	</div>
+</div>

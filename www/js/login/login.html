@@ -1,0 +1,75 @@
+<ion-view class="loginView" ng-controller="loginController as login">
+  <div class="loginContainer">
+    <div class="loginLogoContainer">
+      <img class="loginLogo" src="img/login-logo.png">
+    </div>
+
+    <div class="loginBox">
+      <div class="serverSelect" style="display: none;">
+        <span ng-class="{selected: login.gpsLiveSelected }" ng-click="login.gpsLiveClicked()">GPSLive</span>
+        <span ng-class="{selected: !login.gpsLiveSelected }" ng-click="login.gpsLivePremiumClicked()">GPSLive Premium</span>
+      </div>
+
+      <form class="loginForm">
+        <label class="item-input">
+          <i class="icon ion-person placeholder-icon"></i>
+          <input class="logininput" type="text" required autocorrect="off" autocapitalize="none" ng-model="login.formData.username" placeholder="{{ 'USERNAME' | translate | capFirst}}">
+        </label>
+
+        <label class="item-input" style="margin-bottom: 2rem;">
+          <i class="icon ion-key placeholder-icon"></i>
+          <input class="logininput" type="password" required ng-model="login.formData.password" placeholder="{{ 'PASSWORD' | translate | capFirst}}">
+        </label>
+      </form>
+      <div class="buttonContainer">
+        <ion-spinner style="display: inline;" ng-show="login.working" class="spinner-positive"></ion-spinner>
+        <button ng-show="!login.working" class="loginButton button button-stable loginButtonColor" ng-click="login.login()">{{ 'LOGIN' | translate | capFirst}}</button>
+        <div style="clear: both;"></div>
+      </div>
+    </div>
+		<div class="buttonContainer demoLoginButtonContainer">
+			<ion-spinner style="display: inline;" ng-show="login.demoWorking" class="spinner-positive"></ion-spinner>
+			<button ng-show="!login.demoWorking" class="loginButton button button-stable" ng-click="login.demoLogin()">{{ 'DEMO LOGIN' | translate | capFirst}}</button>
+			<div style="clear: both;"></div>
+		</div>
+  </div>
+  <div class="loginContainer-landscape">
+    <div class="loginLogoContainer">
+      <img class="loginLogo" src="img/login-logo.png">
+    </div>
+
+    <div class="loginBox">
+      <div class="serverSelect" style="display: none;">
+        <span ng-class="{selected: login.gpsLiveSelected }" ng-click="login.gpsLiveClicked()">GPSLive</span>
+        <span ng-class="{selected: !login.gpsLiveSelected }" ng-click="login.gpsLivePremiumClicked()">GPSLive Premium</span>
+      </div>
+
+      <form class="loginForm">
+        <label class="item-input">
+          <i class="icon ion-person placeholder-icon"></i>
+          <input class="logininput" type="text" required autocorrect="off" autocapitalize="none" ng-model="login.formData.username" placeholder="{{ 'USERNAME' | translate | capFirst}}">
+        </label>
+
+        <label class="item-input" style="margin-bottom: 2rem;">
+          <i class="icon ion-key placeholder-icon"></i>
+          <input class="logininput" type="password" required ng-model="login.formData.password" placeholder="{{ 'PASSWORD' | translate | capFirst}}">
+        </label>
+      </form>
+      <div class="buttonContainer">
+        <ion-spinner style="display: inline;" ng-show="login.working" class="spinner-positive"></ion-spinner>
+        <button ng-show="!login.working" class="loginButton button button-stable loginButtonColor" ng-click="login.login()">{{ 'LOGIN' | translate | capFirst}}</button>
+        <div style="clear: both;"></div>
+      </div>
+      <div class="buttonContainer demoLoginButtonContainer">
+        <ion-spinner style="display: inline;" ng-show="login.demoWorking" class="spinner-positive"></ion-spinner>
+        <button ng-show="!login.demoWorking" class="loginButton button button-stable" ng-click="login.demoLogin()">{{ 'DEMO LOGIN' | translate | capFirst}}</button>
+        <div style="clear: both;"></div>
+      </div>
+    </div>
+  </div>
+  <div class="registerRecoverContainer" style="display: none;">
+    <button ng-show="!login.working" class="loginRegisterButton button button-stable" ui-sref="register">
+      {{ 'CREATE_ACCOUNT' | translate | capFirst}}
+    </button>
+  </div>
+</ion-view>

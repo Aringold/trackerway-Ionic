@@ -1,0 +1,5 @@
+<div ng-repeat="distance in distances">
+	<div class="checkbox-list-wrapper">
+		<ion-radio ng-model="selectedItem" ng-value="distance.value" ng-click="selectItem(distance.value)">{{ distance.title }}</ion-radio>
+	</div>
+</div>

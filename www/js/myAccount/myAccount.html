@@ -1,0 +1,33 @@
+<ion-view class="myAccountView" view-title="{{ 'MY_ACCOUNT' | translate | capFirst}}" ng-controller="myAccountController as myAccount">
+	<ion-content>
+		<div class="myAccountContainer">
+			<div class="chart-container">
+				<div class="chart-label">{{ 'OBJECT_USAGE' | translate | capFirst }}</div>
+				<canvas id="doughnut-objects" class="chart chart-doughnut" width="160px" height="160px"></canvas> 
+			</div>
+			<div class="chart-container">
+				<div class="chart-label">{{ 'DAYS_LEFT' | translate | capFirst }}</div>
+				<canvas id="doughnut-days" class="chart chart-doughnut" width="160px" height="160px"></canvas> 
+			</div>
+
+			<div class="form-container">
+				<div class="account-info green">{{ 'REGISTRATION_DATE' | translate | capFirst }}: {{myAccount.registrationDate}}</div>
+				<div class="account-info red">{{ 'EXPIRATION_DATE' | translate | capFirst }}: {{myAccount.expirationDate}}</div>
+			</div>
+
+			<div class="form-container" ng-if="!myAccount.demo">
+        <input type="text" placeholder="{{ 'EMAIL' | translate | capFirst}}" ng-model="myAccount.email" style="width: 100%;">
+
+				<button style="" class="button addObjectButtonInObjects" ng-disabled="!myAccount.email.length" ng-click="myAccount.updateEmail()">{{ 'CHANGE_EMAIL' | translate | capFirst}}</button>
+			</div>
+
+			<div class="form-container" ng-if="!myAccount.demo">
+        <input type="password" placeholder="{{ 'OLD_PASSWORD' | translate | capFirst}}" ng-model="myAccount.oldPassword" style="width: 100%;">
+        <input type="password" placeholder="{{ 'NEW_PASSWORD' | translate | capFirst}}" ng-model="myAccount.newPassword" style="width: 100%;">
+        <input type="password" placeholder="{{ 'CONFIRM_NEW_PASSWORD' | translate | capFirst}}" ng-model="myAccount.confirmNewPassword" style="width: 100%;">
+
+				<button style="" class="button addObjectButtonInObjects" ng-disabled="!myAccount.oldPassword.length || !myAccount.newPassword.length || !myAccount.confirmNewPassword.length" ng-click="myAccount.updatePassword()">{{ 'CHANGE_PASSWORD' | translate | capFirst}}</button>
+			</div>
+		</div>
+	</ion-content>
+</ion-view>

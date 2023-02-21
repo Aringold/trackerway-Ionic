@@ -1,0 +1,100 @@
+.platform-ios .settingsContainer {
+  padding: 1rem;
+}
+
+.settingsContainer {
+  padding: 1rem;
+}
+
+
+.receiveNotification {
+  font-size: 1rem;
+  display: flex;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.receiveNotification span {
+  display: block;
+  position: relative;
+  top: -3px;
+}
+
+.speedDisplay {
+  font-size: 1rem;
+  margin-bottom: 1rem;
+}
+
+.speedDisplay span {
+  margin-bottom: .5rem;
+  display: block;
+}
+
+.privacyPolicyButton {
+  width: 100%;
+}
+
+.settingsContainer .toggle .track {
+  background-color: red;
+}
+.leftReorderButton .item-right-edit {
+  left: 0;
+}
+.leftReorderButton .item-content {
+}
+.settingsContainer ion-list ion-item {
+  min-height: auto;
+}
+.settingsContainer ion-list.disable-user-behavior {
+}
+.settingsContainer ion-list.disable-pointer-events {
+  pointer-events: auto;
+}
+
+.settingsContainer ion-list ion-item .item-content {
+  padding-right: 1rem;
+  padding-left: 80px;
+  min-height: auto;
+}
+.settingsContainer ion-list ion-item div.content {
+  float: left;
+  display: flex;
+  align-items: center;
+  white-space: normal;
+  width: calc(100vw - 190px);
+}
+.settingsContainer ion-list ion-item img {
+  width: 2rem;
+  height: 2rem;
+  margin-right: 6px;
+}
+.settingsContainer ion-list ion-item i {
+  width: 2rem;
+  text-align: center;
+  font-size: 2rem;
+  color: #2B82D4;
+  margin-right: 6px;
+}
+.settingsContainer ion-list ion-item label.switch {
+  float: right;
+}
+.settingsContainer ion-list ion-item label.disabled .sliderT {
+  opacity: 0.75;
+}
+.subheader {
+  font-weight: bold;
+  font-size: 1rem;
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+}
+.receiveNotification.range-input-group {
+  flex-direction: column;
+  align-items: flex-start;
+}
+.receiveNotification.range-input-group .range-input {
+  margin-top: 0.5rem;
+  width: 100%;
+}
+.receiveNotification.range-input-group .range-input input {
+  width: 100%;
+}

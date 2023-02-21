@@ -1,0 +1,405 @@
+.objectsContent {
+    font-size: 2rem;
+    padding-top: 1rem;
+}
+
+.objectsContent .scroll {
+    height: 100%;
+}
+
+.objectsSpinnerContainer {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+}
+
+.platform-ios .objectCardContainer {
+    padding-bottom: 10px;
+}
+
+.objectsTable {
+    width: 100%;
+    min-height: 6.4rem;
+}
+
+.objectCardContainer {
+    padding-right: 1.4rem;
+}
+
+.objectRepeatingContainer {
+    width: 100% !important;
+    margin-bottom: 2rem;
+}
+
+.objectCardContainer .card {
+    width: 100% !important;
+    margin-top: 0;
+}
+
+.addContainer {
+    position: relative;
+    margin-bottom: 1rem;
+    padding: 0 .75rem;
+}
+
+.addContainer button.button {
+    width: 100%;
+}
+
+.item.item-divider.item-title {
+    display: flex;
+    justify-content: space-between;
+}
+
+.editObject {
+    width: 25px;
+    text-align: right;
+    /*margin-right: -10px;*/
+}
+
+.myBackdrop {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 100%;
+    width: 100%;
+    background: rgba(0, 0, 0, .5);
+    z-index: 1000;
+}
+
+.myModal {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    z-index: 1500;
+    background: #fff;
+    border: 1px solid rgba(0, 0, 0, .55);
+    width: 300px;
+    height: 30rem;
+    margin-top: -15rem;
+    margin-left: -150px;
+    display: flex;
+    flex-direction: column;
+}
+
+.editObject-Title {
+    padding-left: 1rem;
+    line-height: 20px;
+    display: flex;
+    justify-content: space-between;
+    height: 60px;
+}
+
+.editObject-Title i {
+    font-size: 17px;
+    position: relative;
+    right: 12px;
+    top: 1px;
+}
+
+.icons {
+    padding: 1rem;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.iconContainer {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    margin-right: 15px;
+    border-right: 1px solid rgba(0, 0, 0, .1);
+
+}
+
+.objectCardTopRight img {
+    max-width: 50px;
+    max-height: 50px;
+}
+
+.editIconContainer {
+    display: flex;
+    overflow: auto;
+    flex-direction: column;
+}
+
+.editIconContainer img {
+    max-width: 50px;
+    max-height: 50px;
+    margin: 3px;
+    padding: 6px;
+}
+
+.currentImg {
+    background: #fac75a;
+}
+
+.objectRow {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 3px;
+    height: 23px;
+}
+
+.objectLayout {
+    display: flex;
+    border-color: #ddd;
+    background-color: #fff;
+    color: #444;
+    position: relative;
+    z-index: 2;
+    margin: -1px;
+    font-size: 16px;
+}
+
+.objectsContainer {
+    flex: 2;
+    padding-right: 16px;
+    padding-bottom: 16px;
+    padding-top: 16px;
+}
+
+.armDisarmButton {
+    font-size: 14px;
+    height: 25px;
+    min-height: 0;
+    padding: 5px;
+    line-height: 0;
+}
+
+.iconContainer .toggle .track {
+    background-color: red;
+}
+
+.popup-container .popup {
+    background-color: rgba(255, 255, 255, 1) !important;
+}
+
+.objectStatusIcon {
+    width: 50px;
+}
+
+.green {
+    color: #9cc602;
+}
+
+.objectCardTopRight {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-bottom: 1px solid rgba(0, 0, 0, .1);
+    width: 100%;
+    flex: 1;
+}
+
+.objectCardBottomRight {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    width: 100%;
+    flex: 1;
+    padding-top: 6px;
+}
+
+.objectExpiryContainer {
+    font-size: 15px;
+    display: flex;
+    justify-content: space-between;
+    padding: 3px 1rem;
+    border-top: 1px solid rgba(0, 0, 0, .1);
+    background: #2d71ce;
+    color: #fff;
+    align-items: center;
+}
+
+.objectCardContainer .card {
+    padding-bottom: 0;
+}
+
+.expiredObjects {
+    font-size: 1rem;
+    margin-top: 1rem;
+    border: 1px solid rgba(0, 0, 0, .1);
+    padding: 1rem;
+    border-radius: 4px;
+}
+.expiredObjects.search-device {
+    margin-bottom: 1rem;
+}
+
+.modalSettinsContainer {
+    overflow: auto;
+}
+
+.flexy {
+    display: flex;
+    align-items: center;
+}
+
+.flexSpacer {
+    flex: 1;
+}
+
+.radioGroup {
+    justify-content: space-between;
+    align-items: center;
+}
+
+.freqRadio {
+    flex-direction: column;
+    border-bottom: 1px solid rgba(0, 0, 0, .2);
+    margin: 0 auto;
+    font-size: 20px;
+}
+
+.freqRadio label {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 20px;
+    width: 95%;
+    padding: .5rem 0;
+    margin-left: 1rem;
+    border-bottom: 1px solid rgba(0, 0, 0, .1);
+}
+
+.radioTitle {
+    font-size: 18px;
+    font-weight: bold;
+    height: 50px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    width: 100%;
+    padding-left: 1rem;
+    background: #f0f0f0;
+}
+
+.radioLabelContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 100%;
+}
+
+.freqRadio label input {
+    margin-right: 10px;
+}
+
+#dialog_cmd_container {
+    display: flex;
+    flex-direction: column;
+    padding: 1rem;
+}
+
+.updateButton {
+    padding: .5rem 1rem;
+    width: 150px;
+    margin-top: 10px;
+    margin: 1rem auto;
+    background: #2d71ce;
+    border: 1px solid rgba(0, 0, 0, 0);
+    border-radius: 6px;
+    color: #fff;
+    display: block;
+}
+
+.modalSettinsContainer label > input {
+    visibility: hidden;
+    display: none;
+}
+
+.modalSettinsContainer label {
+    /*display: block;*/
+}
+
+.modalSettinsContainer label > div {
+    display: block;
+    padding: 0px;
+    height: 30px;
+    width: 30px;
+    background: none;
+    margin-right: 10px;
+}
+
+.modalSettinsContainer label > input:checked + div {
+    background: url("../../img/tick.png");
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: 23px 23px;
+}
+
+html body .item-divider, html body .item-divider.activated {
+    background-color: darkgray;
+    color: #fff;
+}
+
+.objectExpiryContainer {
+    font-size: 15px;
+    display: flex;
+    justify-content: space-between;
+    padding: 3px 1rem;
+    border-top: 1px solid rgba(0, 0, 0, .1);
+    background: #cacaca;
+    color: #fff;
+    align-items: center;
+}
+
+.expiredObject .item.item-divider.item-title {
+    background: red;
+}
+
+.objectsContainer.expiredInfo {
+    display: none;
+}
+
+.expiredObject .objectsContainer.expiredInfo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    height: 150px;
+}
+
+.expiredObject .objectsContainer {
+    display: none;
+}
+
+.expiredObject .objectCardTopRight img {
+    display: none;
+}
+
+.objectCardTopRight i {
+    display: none;
+}
+
+.expiredObject .objectCardTopRight i {
+    display: block;
+}
+
+.expiredObject .editObject {
+    display: none;
+}
+div.search-device {
+	border: 1px solid #2B82D4;
+}
+button.addObjectButtonInObjects {
+	border: 1px solid #2B82D4;;
+	color: #ffffff;
+	background: #2B82D4;
+}
+button.addObjectButtonInObjects:hover {
+	border: 1px solid #2B82D4;;
+	color: #ffffff;
+	background: #2B82D4;
+}

@@ -1,0 +1,132 @@
+<ion-view class="reportsView" view-title="{{ 'REPORTS' | translate | capFirst}}" ng-controller="reportsController as reportsCtrl">
+    <ion-content class="reportsContent">
+        <div class="formContainer">
+            <div class="checkbox-list-wrapper">
+                <span>{{ 'SELECT_REPORT_TYPE' | translate | capFirst}}:</span>
+                <ion-list>
+                    <ion-radio ng-model="reportsCtrl.form.type" ng-value="'general'" ng-change="reportsCtrl.updateDataItems()">{{ 'GENERAL_INFORMATION' | translate}}</ion-radio>
+                    <ion-radio ng-model="reportsCtrl.form.type" ng-value="'proximity'" ng-change="reportsCtrl.updateDataItems()">{{ 'OBJECTS_PROXIMITY' | translate}}</ion-radio>
+                    <ion-radio ng-model="reportsCtrl.form.type" ng-value="'drives_stops'" ng-change="reportsCtrl.updateDataItems()">{{ 'DRIVES_AND_STOPS' | translate}}</ion-radio>
+                    <ion-radio ng-model="reportsCtrl.form.type" ng-value="'overspeed'" ng-change="reportsCtrl.updateDataItems()">{{ 'OVERSPEEDS' | translate}}</ion-radio>
+                    <ion-radio ng-model="reportsCtrl.form.type" ng-value="'zone_in_out'" ng-change="reportsCtrl.updateDataItems()">{{ 'ZONE_IN_OUT' | translate}}</ion-radio>
+                    <ion-radio ng-model="reportsCtrl.form.type" ng-value="'travel_sheet'" ng-change="reportsCtrl.updateDataItems()">{{ 'TRAVEL_SHEET' | translate}}</ion-radio>
+                </ion-list>
+            </div>
+            <div class="input-wrapper">
+                <span>{{ 'REPORT_NAME' | translate }}:</span>
+                <input type="text" placeholder="{{ 'REPORT_NAME_PLACEHOLDER' | translate }}" ng-model="reportsCtrl.form.name" maxlength="25">
+            </div>
+            <div class="input-wrapper">
+                <p ng-if="reportsCtrl.form.objects.length"><strong>{{ 'REPORT_OBJECT' | translate }}:&nbsp;</strong>{{ reportsCtrl.formatObjects() }}</p>
+                <p ng-if="!reportsCtrl.form.objects.length">{{ 'OBJECTS_LIST_EMPTY' | translate }}</p>
+            </div>
+            <div class="button-wrapper">
+                <button class="button" ng-click="reportsCtrl.selectObjects()">{{ 'REPORT_OBJECT_PLACEHOLDER' | translate }}</button>
+            </div>
+            <div class="input-wrapper" ng-if="reportsCtrl.form.type == 'zone_in_out'">
+                <p ng-if="reportsCtrl.form.zones.length"><strong>{{ 'REPORT_ZONES' | translate }}:&nbsp;</strong>{{ reportsCtrl.formatZones() }}</p>
+                <p ng-if="!reportsCtrl.form.zones.length">{{ 'ZONES_LIST_EMPTY' | translate }}</p>
+            </div>
+            <div class="button-wrapper" ng-if="reportsCtrl.form.type == 'zone_in_out'">
+                <button class="button" ng-click="reportsCtrl.selectZones()">{{ 'REPORT_ZONES_PLACEHOLDER' | translate }}</button>
+            </div>
+            <div class="input-wrapper">
+                <p ng-if="reportsCtrl.form.data_items.length"><strong>{{ 'REPORT_DATA_ITEMS' | translate }}:&nbsp;</strong>{{ reportsCtrl.formatDataItems() }}</p>
+                <p ng-if="!reportsCtrl.form.data_items.length">{{ 'DATA_ITEMS_LIST_EMPTY' | translate }}</p>
+            </div>
+            <div class="button-wrapper">
+                <button class="button" ng-click="reportsCtrl.selectDataItems()">{{ 'REPORT_DATA_ITEMS_PLACEHOLDER' | translate }}</button>
+            </div>
+            <label class="item item-input item-radio-select" ng-show="displayMode.value=='sharing'">
+				<div class="input-label">
+					{{ 'REPORT_FORMAT' | translate | capFirst}}
+				</div>
+				<button class="button empty" ng-click="reportsCtrl.selectFormat()">{{ reportsCtrl.formatFormat() }}</button>
+				<!-- select ng-model="reportsCtrl.form.format" >
+					<option value="{{formatItem.value}}" ng-repeat="formatItem in reportsCtrl.formatsList">{{ formatItem.title }}</option>
+				</select -->
+			</label>
+            <label class="item item-input item-radio-select margin-bottom">
+				<div class="input-label">
+					{{ 'REPORT_TIME_PERIOD' | translate | capFirst}}
+				</div>
+				<button class="button empty" ng-click="reportsCtrl.selectTimePeriod()">{{ reportsCtrl.formatTimePeriod() }}</button>
+				<!-- select ng-model="reportsCtrl.form.time_period" >
+					<option value="{{periodItem.value}}" ng-repeat="periodItem in reportsCtrl.periodsList">{{ periodItem.title }}</option>
+				</select -->
+			</label>
+            <div class="toggle-wrapper" ng-if="reportsCtrl.form.type != 'general'">
+                <span>{{ 'SHOW_COORDINATES' | translate | capFirst}}:</span>
+                <div style="flex:1;"></div>
+                <label class="switch">
+					<input ng-model="reportsCtrl.form.show_coordinates" type="checkbox" class="ng-pristine ng-untouched ng-valid ng-empty">
+					<div class="sliderT round">
+					</div>
+				</label>
+            </div>
+            <div class="toggle-wrapper" ng-if="reportsCtrl.form.type != 'general'">
+                <span>{{ 'SHOW_ADDRESSES' | translate | capFirst}}:</span>
+                <div style="flex:1;"></div>
+                <label class="switch">
+					<input ng-model="reportsCtrl.form.show_addresses" type="checkbox" class="ng-pristine ng-untouched ng-valid ng-empty">
+					<div class="sliderT round">
+					</div>
+				</label>
+            </div>
+            <div class="toggle-wrapper" ng-if="reportsCtrl.form.type != 'general' && reportsCtrl.form.type != 'zone_in_out'">
+                <span>{{ 'SHOW_MARKERS' | translate | capFirst}}:</span>
+                <div style="flex:1;"></div>
+                <label class="switch">
+					<input ng-model="reportsCtrl.form.show_markers" type="checkbox" class="ng-pristine ng-untouched ng-valid ng-empty">
+					<div class="sliderT round">
+					</div>
+				</label>
+            </div>
+            <div class="toggle-wrapper" ng-if="reportsCtrl.form.type == 'drives_stops'">
+                <span>{{ 'ZONES_INSTEAD_OF_ADDRESSES' | translate | capFirst}}:</span>
+                <div style="flex:1;"></div>
+                <label class="switch">
+					<input ng-model="reportsCtrl.form.zones_instead_of_addresses" type="checkbox" class="ng-pristine ng-untouched ng-valid ng-empty">
+					<div class="sliderT round">
+					</div>
+				</label>
+            </div>
+            <div class="input-wrapper" ng-if="reportsCtrl.form.type == 'overspeed'">
+                <span>{{ 'REPORT_SPEED_LIMIT' | translate }}:</span>
+                <input type="number" placeholder="{{ 'REPORT_SPEED_LIMIT_PLACEHOLDER' | translate }}" ng-model="reportsCtrl.form.speed_limit">
+            </div>
+            <label class="item item-input item-radio-select" ng-if="reportsCtrl.form.type == 'proximity'">
+				<div class="input-label">
+					{{ 'STOPS' | translate | capFirst}}
+				</div>
+				<button class="button empty" ng-click="reportsCtrl.selectStops()">{{ reportsCtrl.formatStops() }}</button>
+				<!-- select ng-model="reportsCtrl.form.stops" >
+					<option value="{{stopItem.value}}" ng-repeat="stopItem in reportsCtrl.stopsList">{{ stopItem.title }}</option>
+				</select -->
+			</label>
+            <label class="item item-input item-radio-select" ng-if="reportsCtrl.form.type == 'proximity'">
+				<div class="input-label">
+					{{ 'DISTANCE_BETWEEN_VEHICLES' | translate | capFirst}}
+				</div>
+				<button class="button empty" ng-click="reportsCtrl.selectDistance()">{{ reportsCtrl.formatDistance() }}</button>
+				<!-- select ng-model="reportsCtrl.form.distance_between_vehicles" >
+					<option value="{{distanceItem.value}}" ng-repeat="distanceItem in reportsCtrl.distancesList">{{ distanceItem.title }}</option>
+				</select -->
+			</label>
+            <div class="checkbox-list-wrapper">
+                <ion-list>
+                    <ion-radio ng-repeat="item in modeList" ng-value="item.value" ng-model="displayMode.value" ng-change="changeMode(item)" name="display-mode" ng-checked="displayMode.value==item.value">
+                        {{ item.text | translate | capFirst}}
+                    </ion-radio>
+                </ion-list>
+            </div>
+
+            <div class="button-wrapper" ng-show="displayMode.value=='sharing'">
+                <button class="button addObjectButtonInObjects" ng-disabled="!reportsCtrl.isFormValid()" ng-click="reportsCtrl.generateReport()">{{ 'GENERATE_REPORT' | translate }}</button>
+            </div>
+            <div class="button-wrapper" ng-show="displayMode.value=='view'">
+                <button class="button addObjectButtonInObjects" ng-disabled="!reportsCtrl.isFormValid()" ng-click="reportsCtrl.generateReport()">{{ 'VIEW_REPORT' | translate }}</button>
+            </div>
+        </div>
+    </ion-content>
+</ion-view>

@@ -1,0 +1,136 @@
+<ion-view view-title='<img class="title-image" width=100 src="img/title-logo.png" />' ng-controller="homeController as home" ng-init="home.init()">
+  <ion-content class="homeContent">
+    <div class="expiredObjects search-objects-container" style="padding: .5rem;">
+      <input type="text" placeholder="{{ 'SEARCH_DEVICE' | translate | capFirst}}" ng-model="home.objFilter" style="width: 100%;">
+    </div>
+    <div id="topHalf" class="{{home.loading ? 'loading' : ''}} {{home.disconnected ? 'disconnected' : ''}}  {{home.objects.length == 0 && !home.disconnected ? 'noobjects' : ''}}">
+      <ion-spinner ng-show="home.loading" class="spinner-positive"></ion-spinner>
+      <div class="connecting" ng-if="home.loading">
+        {{ 'CONNECTING_TO_SERVER' | translate | capFirst}}
+      </div>
+      <div id="homeDisconnected">
+        <p></p>
+        <p>{{ 'NOT_CONNECTED' | translate | capFirst}}</p>
+        <p>{{ 'PLS_CHECK_INTERNET' | translate | capFirst}}</p>
+        <p></p>
+      </div>
+      <div id="addObjectContainer">
+        <p>{{ 'NO_OBJECTS' | translate | capFirst}}</p>
+        <p>{{ 'PLS_USE_THE_BUTTON' | translate | capFirst}}</p>
+        <p>
+        <button class="button" ui-sref="addObject">{{ 'ADD_DEVICE' | translate | capFirst}}</button>
+        </p>
+      </div>
+      <div id="objectContainer"
+           class="{{ home.loading || home.objects.length == 0 || home.disconnected ? 'gizle' : 'goster' }}"
+           ng-click="home.gotoMapOneObject()"
+           on-swipe-left="home.objectForward($event)"
+           on-swipe-right="home.objectBack($event)">
+        <div id="arrows" class="{{ home.loading ? 'gizle' : 'goster' }}">
+          <button class="left button button-default" ng-click="home.objectBack($event)">
+            <i class="ion-chevron-left"></i>
+          </button>
+          <button class="right button button-default" ng-click="home.objectForward($event)">
+            <i class="ion-chevron-right"></i>
+          </button>
+        </div>
+        <div id="objectName">{{ home.objects[home.currentIndex].name }}</div>
+        <div id="objectDetailsContainer">
+          <div class="expired {{ home.objects.length && home.objects[home.currentIndex].active != 'true' && !home.disconnected && !home.loading ? 'goster' : '' }}">
+            {{ 'SUBSCRIPTION_EXPIRED' | translate | capFirst}}
+          </div>
+          <div id="gaugeContainer" ng-show="!home.disconnected">
+            <!--
+            <img class="statusIcon" ng-src="{{home.statusImageUrl}}">
+            -->
+            <img class="statusIcon" ng-if="home.statusImageUrl == 'img/connection-gsm-gps.svg'" src="img/connection-gsm-gps.svg">
+            <img class="statusIcon" ng-if="home.statusImageUrl == 'img/connection-gsm.svg'" src="img/connection-gsm.svg">
+            <img class="statusIcon" ng-if="home.statusImageUrl == 'img/connection-gsm.svg'" src="img/connection-gsm.svg">
+            <div id="gauge" class="{{ home.loading ? 'gizle' : 'goster' }}"></div>
+          </div>
+          <div id="objectDetails">
+            <table id="objectsTable" class="{{ home.loading || home.objects[home.currentIndex].active!='true' ? 'gizle' : 'goster' }}">
+              <tr ng-if="home.isSensorVisible('status', home.objects[home.currentIndex].imei)">
+                <td>{{ 'STATUS' | translate | capFirst}}:</td>
+                <td style="min-width:75px;">{{ home.objects[home.currentIndex].status2.st }}</td>
+                <!--<td style="min-width:75px;">{{ home.objects[home.currentIndex].dt_tracker.split(' ')[0] }}</td>-->
+              </tr>
+              <tr ng-if="home.isSensorVisible('since', home.objects[home.currentIndex].imei)">
+                <td style="padding-right: 1.5rem;visibility: hidden;">Since:</td>
+                <td>{{ home.objects[home.currentIndex].statusstr }}</td>
+
+                <!--<td>{{ home.objects[home.currentIndex].dt_tracker.split(' ')[1] }}</td>-->
+              </tr>
+              <tr style="display: none;">
+                <td>{{ 'SPEED' | translate | capFirst}}:</td>
+                <td>{{ home.objects[home.currentIndex].speed }} mph</td>
+              </tr>
+              <tr ng-if="home.isSensorVisible('battery', home.objects[home.currentIndex].imei)" ng-show="home.showBattery">
+                <td>{{ 'BATTERY' | translate | capFirst}}:</td>
+                <td>{{ home.objects[home.currentIndex].params.batp }}%</td>
+              </tr>
+              <tr ng-if="home.isSensorVisible('ignition', home.objects[home.currentIndex].imei)" ng-show="home.showIgnition">
+                <td>{{ 'IGNITION' | translate | capFirst}}:</td>
+                <td>{{ home.objects[home.currentIndex].params.ignition }}</td>
+              </tr>
+              <tr ng-if="home.isSensorVisible('start_at', home.objects[home.currentIndex].imei)" ng-show="home.objects[home.currentIndex].driving_start">
+                <td>{{ 'START_AT' | translate | capFirst}}:</td>
+                <td>{{ home.objects[home.currentIndex].driving_start}}</td>
+              </tr>
+              <tr ng-if="home.isSensorVisible('length', home.objects[home.currentIndex].imei)" ng-show="home.objects[home.currentIndex].driving_length">
+                <td>{{ 'LENGTH' | translate | capFirst}}:</td>
+                <td>{{ home.objects[home.currentIndex].driving_length }}</td>
+              </tr>
+              <tr ng-if="home.isSensorVisible('address', home.objects[home.currentIndex].imei)" ng-show="home.objects[home.currentIndex].address">
+                <td>{{ 'ADDRESS' | translate | capFirst}}:</td>
+                <td>{{ home.objects[home.currentIndex].address }}</td>
+              </tr>
+              <!-- Remove Driver Behavior (not delete!) -->
+              <!-- <tr ng-if="home.isSensorVisible('rating', home.objects[home.currentIndex].imei)">
+                <td>{{ 'DRIVER_BEHAVIOR_EVENTS_DATA_RATING' | translate | capFirst}}:</td>
+                <td ng-switch="home.getObjectRating(home.objects[home.currentIndex].imei)">
+                  <span ng-switch-when="4" class="rating-a-plus">A<sup>+</sup></span>
+                  <span ng-switch-when="3" class="rating-a">A</span>
+                  <span ng-switch-when="2" class="rating-b">B</span>
+                  <span ng-switch-when="1" class="rating-c">C</span>
+                  <span ng-switch-when="0">0</span>
+                  <span ng-switch-default>&mdash;</span>
+                </td>
+              </tr> -->
+              <tr ng-repeat="sensor in home.customSensors">
+                <td>{{sensor.name}}:</td>
+                <td>{{sensor.value}}</td>
+              </tr>
+            </table>
+          </div>
+        </div>
+      </div>
+      <div class="loader">
+        <div class="progress {{ home.loading ? 'gizle' : 'goster' }}" style="width: {{ home.progressPercent }}%;"></div>
+      </div>
+    </div>
+    <div id="bottomHalf" class="{{home.loading?'loading':''}} {{home.disconnected?'disconnected':''}} {{home.objects.length==0 || home.disconnected?'noobjects':''}}">
+            <div ng-repeat="item in home.menu()" class="homeButton" ng-click="home[item.route]()">
+              <i ng-if="item.icon == 'icon'" class="{{item.class}}"></i>
+              <!--
+              <img ng-if="item.icon == 'img' && !home.loading" class="{{item.class}}" ng-src="item.src">
+              <img ng-if="item.icon == 'img' && home.loading" class="{{item.class}}" ng-src="item.src_inactive">
+              -->
+              <img ng-if="item.route == 'gotoAlerts' && !home.loading" class="svg replace" src="img/newevent_blue.svg">
+              <img ng-if="item.route == 'gotoAlerts' && home.loading" class="svg replace" src="img/newevent_gray.svg">
+              <img ng-if="item.route == 'openReports' && !home.loading" class="svg" src="img/report.svg">
+              <img ng-if="item.route == 'openReports' && home.loading" class="svg" src="img/report_gray.svg">
+              <!-- Remove Driver Behavior (not delete!) -->
+              <!-- <img ng-if="item.route == 'openDriverBehavior' && !home.loading" class="svg" src="img/movement.svg">
+              <img ng-if="item.route == 'openDriverBehavior' && home.loading" class="svg" src="img/movement_gray.svg"> -->
+              <img ng-if="item.route == 'openListFences' && !home.loading" class="svg" src="img/zones_red.svg">
+              <img ng-if="item.route == 'openListFences' && home.loading" class="svg" src="img/zones_gray.svg">
+              <img ng-if="item.route == 'openGprs' && !home.loading" class="svg" src="img/cmd.svg">
+              <img ng-if="item.route == 'openGprs' && home.loading" class="svg" src="img/cmd_gray.svg">
+              <img ng-if="item.route == 'openAbout' && !home.loading" src="img/app.svg">
+              <img ng-if="item.route == 'openAbout' && home.loading" src="img/app_gray.svg">
+              <div class="buttonText">{{item.title | translate | capFirst}}</div>
+      </div>
+    </div>
+  </ion-content>
+</ion-view>

@@ -1,0 +1,164 @@
+.neweventContent {
+  font-size: 2rem;
+  padding: 1rem;
+}
+
+.eventSpinnerContainer {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.neweventContent .scroll {
+  height: 100%;
+}
+
+.objectCard {
+  border: 1px solid rgba(0, 0, 0, .1);
+  font-size: 1rem;
+  margin-bottom: 1rem;
+}
+
+.objectCardTitle {
+  padding: .5rem;
+  background: #2d71ce;
+  color: #fff;
+}
+
+.objectCardContent {
+  padding: 1rem;
+}
+
+.cardRow {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row;
+  align-items: center;
+}
+
+.card-group .cardRow > div:first-child {
+  height: 1.3rem;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+.card-group .cardRow > div:first-child span {
+  display: inline-block;
+  max-width: 80%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.card-group .cardRow:not(:first-child) {
+  padding-left: 0.5rem;
+}
+.card-group .cardRow:not(:last-child) {
+  margin-bottom: 0.5rem;
+}
+
+.card-group:not(:last-child) {
+  margin-bottom: 1rem;
+}
+
+.cardRow:not(:last-child) {
+  margin-bottom: 1rem;
+}
+button.button-settings {
+	min-height: auto;
+	min-width: auto;
+	font-size: 24px;
+	line-height: 20px;
+	margin-top: -2px;
+	background-color: transparent;
+	border: none;
+	color: #2d71ce;
+}
+button.button-settings:hover,
+button.button-settings:focus,
+button.button-settings:active {
+	background-color: transparent;
+	border: none;
+	color: #2B82D4;
+}
+.zone-alert-settings .popup {
+	width: 91%;
+}
+.input-group-wrapper {
+	border: 1px solid #2d71ce;
+	border-radius: 4px;
+	margin-top: 8px;
+	margin-bottom: 8px;
+}
+.input-group {
+	display: flex;
+	padding: 3px 0px 3px 8px;
+}
+.input-group-wrapper .input-group {
+	border-bottom: 1px solid #2d71ce;
+}
+.input-group-wrapper .input-group:last-child {
+	border-bottom: 0px;
+}
+.input-group input {
+	flex: 1;
+}
+.input-group button {
+	padding-top: 3px;
+}
+.label-group {
+	display: flex;
+	padding: 3px 0px 3px 0px;
+	margin-top: 3px;
+	margin-bottom: 3px;
+}
+.label-group span {
+	flex: 1;
+}
+.label-group button {
+	padding-top: 3px;
+}
+.group-wrapper {
+	margin-bottom: 16px;
+}
+.no-zones {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+.no-zones button {
+	font-size: 14px;
+	background-color: #2d71ce;
+	color: #ffffff;
+}
+.no-zones button:hover,
+.no-zones button:focus,
+.no-zones button:active {
+	font-size: 14px;
+	background-color: #2B82D4;
+	color: #ffffff;
+}
+.view-alerts ion-item {
+  min-height: auto;
+}
+.view-alerts ion-item .item-content {
+  padding: 8px;
+  padding-left: 48px;
+  min-height: auto;
+}
+.view-alerts ion-item.item-thumbnail-left .item-content img {
+  max-width: 28px;
+  max-height: 28px;
+}
+.view-alerts ion-item .item-content h2 {
+  overflow: inherit;
+  white-space: normal;
+}
+.view-alerts ion-item .item-content p {
+  overflow: inherit;
+  white-space: normal;
+}
+.no-events {
+  font-size: 14px;
+  margin-top: 36px;
+}

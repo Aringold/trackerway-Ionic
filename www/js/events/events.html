@@ -1,0 +1,47 @@
+<ion-view view-title="{{ 'NOTIFICATIONS' | translate | capFirst}}" ng-controller="eventController as eventCtrl">
+  <ion-content class="eventsContent">
+
+    <div ng-show="eventCtrl.working" class="objectsSpinnerContainer">
+      <ion-spinner class="spinner-positive"></ion-spinner>
+    </div>
+
+    <div class="eventsListContainer">
+      <div class="eventCardContainer" ng-hide="eventCtrl.working">
+
+        <div class="eventRepeatingContainer" ng-click="eventCtrl.gotoMap(event)" item-height="190" item-width="100%" collection-repeat="event in eventCtrl.events">
+          <div class="card">
+            <div class="item item-divider">
+              <div>{{ event.event_desc }}</div>
+              <div class="eventDesc">{{ event.name }}</div>
+
+            </div>
+            <div class="item item-text-wrap">
+              <table class="eventsTable">
+                <!--<tr>-->
+                  <!--<td>Imei:</td>-->
+                  <!--<td style="margin-left:1rem;">{{event.imei}}</td>-->
+                <!--</tr>-->
+                <tr>
+                  <td>{{ 'DATE' | translate | capFirst}}:</td>
+                  <td>{{event.time}}</td>
+                </tr>
+                <tr>
+                  <td>{{ 'SPEED' | translate | capFirst}}:</td>
+                  <td>{{event.speedwithdisplay}}</td>
+                </tr>
+                <tr ng-show="event.showBattery">
+                  <td>{{ 'BATTERY' | translate | capFirst}}:</td>
+                  <td>{{ event.params.batp }}%</td>
+                </tr>
+                <tr ng-show="event.showIgnition">
+                  <td>{{ 'IGNITION' | translate | capFirst}}:</td>
+                  <td>{{ event.params.ignition }}</td>
+                </tr>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </ion-content>
+</ion-view>

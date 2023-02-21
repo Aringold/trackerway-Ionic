@@ -1,0 +1,308 @@
+.neweventContent {
+  font-size: 2rem;
+  padding: 1rem;
+}
+
+.eventSpinnerContainer {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.neweventContent .scroll {
+  height: auto;
+  margin-bottom: 3rem;
+}
+
+.objectCard {
+  border: 1px solid rgba(0, 0, 0, .1);
+  font-size: 1rem;
+  margin-bottom: 1rem;
+}
+
+.objectCardTitle {
+  padding: .5rem;
+  background: #2d71ce;
+  color: #fff;
+}
+
+.objectCardContent {
+  padding: 1rem;
+}
+
+.cardRow {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row;
+  align-items: center;
+}
+
+.card-group .cardRow > div:first-child {
+  height: 1.3rem;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+.card-group .cardRow > div:first-child span {
+  display: inline-block;
+  max-width: 80%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.card-group .cardRow:not(:first-child) {
+  padding-left: 0.5rem;
+}
+.card-group .cardRow:not(:last-child) {
+  margin-bottom: 0.5rem;
+}
+
+.card-group:not(:last-child) {
+  margin-bottom: 1rem;
+}
+
+.cardRow:not(:last-child) {
+  margin-bottom: 1rem;
+}
+button.button-settings {
+	min-height: auto;
+	min-width: auto;
+	font-size: 24px;
+	line-height: 20px;
+	margin-top: -2px;
+	background-color: transparent;
+	border: none;
+	color: #2d71ce;
+}
+button.button-settings:hover,
+button.button-settings:focus,
+button.button-settings:active {
+	background-color: transparent;
+	border: none;
+	color: #2B82D4;
+}
+.zone-alert-settings .popup {
+	width: 91%;
+}
+.input-group-wrapper {
+	border: 1px solid #2d71ce;
+	border-radius: 4px;
+	margin-top: 8px;
+	margin-bottom: 8px;
+}
+.input-group {
+	display: flex;
+	padding: 3px 0px 3px 8px;
+}
+.input-group-wrapper .input-group {
+	border-bottom: 1px solid #2d71ce;
+}
+.input-group-wrapper .input-group:last-child {
+	border-bottom: 0px;
+}
+.input-group input {
+	flex: 1;
+}
+.input-group button {
+	padding-top: 3px;
+}
+.label-group {
+	display: flex;
+	padding: 3px 0px 3px 0px;
+	margin-top: 3px;
+	margin-bottom: 3px;
+}
+.label-group span {
+	flex: 1;
+}
+.label-group button {
+	padding-top: 3px;
+}
+.group-wrapper {
+	margin-bottom: 16px;
+}
+.no-zones {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+.no-zones button {
+	font-size: 14px;
+	background-color: #2d71ce;
+	color: #ffffff;
+}
+.no-zones button:hover,
+.no-zones button:focus,
+.no-zones button:active {
+	font-size: 14px;
+	background-color: #2B82D4;
+	color: #ffffff;
+}
+.alertsContainer .button-wrapper {
+	margin-top: 18px;
+	margin-bottom: 18px;
+}
+.alertsContainer .button-wrapper button.button {
+	width: 100%;
+	border: 1px solid #2b82d4;
+	color: #ffffff;
+	background: #2b82d4;
+}
+.alertsContainer .margin-bottom {
+  margin-bottom: 1rem;
+}
+.alertsContainer .row {
+  padding: 0px;
+  margin-bottom: 18px;
+}
+.alertsContainer .row .col.event-type {
+  border: 1px #bfbfbf solid;
+  border-radius: 4px;
+  position: relative;
+}
+.alertsContainer .row .col.event-type:before {
+  content: "";
+  display: block;
+  padding-top: 100%;
+}
+.alertsContainer .row .col.event-type:first-child {
+  margin-right: 6px;
+}
+.alertsContainer .row .col.event-type:last-child {
+  margin-left: 6px;
+}
+.alertsContainer .row .col.event-type .content {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  line-height:100%;
+  font-size: 1rem;
+  height:100%;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 35%;
+}
+.alertsContainer .row .col.event-type .content .label {
+  margin-top: 60%;
+}
+.alertsContainer .row .col.event-type.moving .content {
+  background-image: url(../../img/movement.svg);
+  background-size: auto;
+}
+.alertsContainer .row .col.event-type.overspeed .content {
+  background-image: url(../../img/overspeed.svg);
+}
+.alertsContainer .row .col.event-type.zone-in .content {
+  background-image: url(../../img/zone_in.svg);
+}
+.alertsContainer .row .col.event-type.zone-out .content {
+  background-image: url(../../img/zone_out.svg);
+}
+.alertsContainer .row .col.event-type.connection-no .content {
+  background-image: url(../../img/no_connection.svg);
+}
+.alertsContainer .row .col.event-type.custom .content {
+  background-image: url(../../img/newevent_blue.svg);
+}
+.alertsContainer {
+  font-size: 14px;
+}
+.alertsContainer .formContainer {
+  padding: 0px;
+}
+.alertsContainer .input-wrapper {
+	margin-top: 18px;
+	margin-bottom: 18px;
+}
+.alertsContainer .input-wrapper > span {
+  margin-bottom: .5rem;
+  display: block;
+}
+.alertsContainer .input-wrapper input {
+	width: 100%;
+	padding: 1rem;
+	height: auto;
+	font-size: 1rem;
+	border: 1px solid #2B82D4;
+	margin-bottom: 8px;
+	border-radius: 4px;
+}
+.alertsContainer .input-wrapper textarea {
+	width: 100%;
+	padding: 1rem;
+	height: auto;
+	font-size: 1rem;
+	border: 1px solid #2b82d4;
+	margin-bottom: 8px;
+	border-radius: 4px;
+}
+.alertsContainer .button-wrapper {
+	margin-top: 18px;
+	margin-bottom: 18px;
+}
+.alertsContainer .button-wrapper button.button {
+	width: 100%;
+	border: 1px solid #2b82d4;
+	color: #ffffff;
+	background: #2b82d4;
+}
+.alertsContainer .margin-bottom {
+  margin-bottom: 1rem;
+}
+.item.item-input button.button {
+	height: 100%;
+}
+.item.item-input button.button.empty {
+	border: 0px;
+	background-color: transparent;
+}
+.item.item-radio-select div.input-label {
+	display: flex;
+	flex: 1;
+}
+.item.item-radio-select button.button {
+	display: flex;
+	flex: 1;
+	justify-content: end;
+	text-align: right;
+}
+.alertsContainer label.item-radio-select {
+  border-radius: 4px;
+}
+.popup-container.popup-with-search .popup-body {
+  padding-top: 65px;
+}
+.popup-container.popup-with-search .popup-body .input-wrapper {
+  margin: -10px -10px 10px -10px;
+  padding: 10px 10px 10px 10px;
+  border-bottom: 1px solid #eeeeee;
+  position: absolute;
+  top: 59px;
+  width: 100%;
+  background: #ffffff;
+  z-index: 100;
+}
+.alertsContainer .formContainer .input-wrapper .input-group input {
+  border: 0px;
+  margin: 0px;
+}
+.objects-loading-spinner svg {
+  height: 64px;
+  width: 64px;
+}
+.no-objects, 
+.no-zones {
+  font-size: 14px;
+  margin-top: 12px;
+}
+.platform-android .event-save-action-sheet button.action-sheet-option {
+  padding-left: 16px;
+  padding-right: 16px;
+}

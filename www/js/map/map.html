@@ -1,0 +1,69 @@
+<ion-view view-title="{{ 'MAP' | translate | capFirst}}" ng-controller="mapController as map">
+    <ion-content id="mapContent" scroll="false">
+
+        <div data-tap-disabled="true" id="map"></div>
+        <div class="groupButtons">
+            <div class="refresh" ng-if="map.showRefreshButton">
+                <button ng-click="map.intervalUpdate()"></button>
+            </div>
+            <div class="refresh" ng-if="map.showSingleRefreshButton">
+                <button ng-click="map.intervalSingleUpdate()"></button>
+            </div>
+            <div class="tooltip-button" ng-hide="!map.ckeckboxButtonFlag">
+                <button ng-click="map.showAndHideTooltip($event)"></button>
+            </div>
+            <div class="display-diveces" ng-hide="!map.ckeckboxButtonFlag">
+                <button ng-click="map.displayCheckboxes()"></button>
+                <div class="checkboxes">
+                    <div class="shift-div">
+                        <div class="input-block">
+                            <input id="move-auto" type="checkbox" checked ng-click="map.displayMoveAuto($event)" >
+                            <label for="move-auto">{{'SHOW_MOVING' | translate | capFirst}}</label>
+                        </div>
+                        <div class="input-block">
+                            <input id="stopped-auto" type="checkbox" checked ng-click="map.displayStoppedAuto($event)">
+                            <label for="stopped-auto">{{ 'SHOW_STOPPED' | translate | capFirst}}</label>
+                        </div>
+                    </div>
+                </div>
+            </div>  
+        </div>
+
+        <div class="tabs" ng-show="!map.form && !map.typeForHistory">
+            <a class="tab-item google-map-icon" ng-click="map.openGoogleMaps()">
+                <img class="googleMapsIcon" src="img/google-maps-filled.svg">
+            </a>
+            <a class="tab-item" ng-click="map.showObject()">
+                <i style="font-size: 2.3rem;" class="mapIcon ion-ios-location"></i>
+            </a>
+            <a class="tab-item" ng-click="map.selectLayer()">
+                <i class="mapIcon ion-map"></i>
+            </a>
+        </div>
+
+        <div class="playroute-buttons" ng-show="map.typeForHistory">
+            <button class="button" ng-click="map.showMovingRoute()">
+                <img class="googleMapsIcon" src="img/play-outline.svg" ng-if="map.buttonIcon === 'play'">
+                <img class="googleMapsIcon" src="img/pause-outline.svg" ng-if="map.buttonIcon === 'pause'">
+            </button>
+            <div class="label-scales">
+                <div class="label">Position</div>
+                <div class="label">Speed</div>
+            </div>
+        </div>
+        
+
+        <div class="tabs" ng-if="map.form">
+            <a class="tab-item" ng-click="map.cancelPoints()">
+                <i class="mapIcon ion-android-close"></i>
+            </a>
+            <a class="tab-item" ng-click="map.deletePoint()">
+                <i class="mapIcon ion-android-delete"></i>
+            </a>
+            <a class="tab-item" ng-click="map.savePoints()">
+                <i class="mapIcon ion-android-done-all"></i>
+            </a>
+        </div>
+
+    </ion-content>
+</ion-view>

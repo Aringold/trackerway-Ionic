@@ -1,0 +1,29 @@
+.addObjectContainer {
+  padding: 1rem;
+  position: relative;
+  top: 44px;
+}
+
+.addObjectContainer label {
+  padding: 0;
+  height: 40px;
+}
+
+.addObjectContainer input {
+  border-bottom: 1px solid rgba(0, 0, 0, .1);
+}
+
+.addObjectContainer select {
+  width: 93%;
+  border: none;
+  background: transparent;
+  text-align: left;
+}
+
+.addObjectContainer button.button {
+  width: 100%;
+}
+
+.addObjectContainer form.addObjectForm {
+  margin-bottom: 1rem;
+}

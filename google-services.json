@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "322976957830",
+    "firebase_url": "https://trackerwaynew.firebaseio.com",
+    "project_id": "trackerwaynew",
+    "storage_bucket": "trackerwaynew.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:322976957830:android:e7cd88ac07dbaef2",
+        "android_client_info": {
+          "package_name": "com.yd.TrackerWay"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "322976957830-rvanerap8s6gc0tk7oc5b9ncj37tipfd.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAoea3fsWk8KjNsDpTgB51TuNEqCQOG8nk"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

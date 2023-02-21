@@ -1,0 +1,112 @@
+<ion-view class="settingsView" view-title="{{ 'SETTINGS' | translate | capFirst}}" ng-controller="settingsController as settings">
+  <ion-content class="homeContent">
+  <div class="settingsContainer">
+    <div class="receiveNotification">
+      <span>{{ 'INSANT_NOTIFICATIONS' | translate | capFirst}}:</span>
+      <div style="flex:1;"></div>
+      <label class="switch">
+        <input ng-model="settings.sendNotification" type="checkbox" class="ng-pristine ng-untouched ng-valid ng-empty">
+        <div class="sliderT round">
+        </div>
+      </label>
+    </div>
+
+    <div class="receiveNotification">
+      <span>{{ 'SHOW_ZONES' | translate | capFirst}}:</span>
+      <div style="flex:1;"></div>
+      <label class="switch">
+        <input ng-model="settings.showZones" type="checkbox" class="ng-pristine ng-untouched ng-valid ng-empty">
+        <div class="sliderT round">
+        </div>
+      </label>
+    </div>
+
+    <div class="receiveNotification">
+      <span>{{ 'SHOW_ARROWS' | translate | capFirst}}:</span>
+      <div style="flex:1;"></div>
+      <label class="switch">
+        <input ng-model="settings.showArrows" type="checkbox" class="ng-pristine ng-untouched ng-valid ng-empty">
+        <div class="sliderT round">
+        </div>
+      </label>
+    </div>
+
+    <div class="receiveNotification">
+      <span>{{ 'SHOW_TAIL' | translate | capFirst}}:</span>
+      <div style="flex:1;"></div>
+      <label class="switch">
+        <input ng-model="settings.showTail" type="checkbox" class="ng-pristine ng-untouched ng-valid ng-empty">
+        <div class="sliderT round">
+        </div>
+      </label>
+    </div>
+
+    <div class="receiveNotification">
+      <span>{{ 'SHOW_MARKERS' | translate | capFirst}}:</span>
+      <div style="flex:1;"></div>
+      <label class="switch">
+        <input ng-model="settings.showMarkers" type="checkbox" class="ng-pristine ng-untouched ng-valid ng-empty">
+        <div class="sliderT round">
+        </div>
+      </label>
+    </div>
+
+    <div class="receiveNotification range-input-group">
+      <span>{{ 'RECEIVE_UPDATES_EACH' | translate | capFirst}} {{settings.receiveUpdates}} sec</span>
+      <div class="range-input">
+        <input ng-model="settings.receiveUpdates" ng-model-options="{debounce: 1000}" type="range" min="5" max="300" step="5" class="ng-pristine ng-untouched ng-valid ng-empty">
+      </div>
+    </div>
+
+    <div class="speedDisplay">
+      <span>{{ 'SHOW_SPEED' | translate | capFirst}}:</span>
+      <ion-list>
+        <ion-radio ng-model="settings.speedDisplay" ng-value="'kph'">{{ 'KILOMETERS_PER_HOUR' | translate | capFirst}}</ion-radio>
+        <ion-radio ng-model="settings.speedDisplay" ng-value="'mph'">{{ 'MILES_PER_HOUR' | translate | capFirst}}</ion-radio>
+        <ion-radio ng-model="settings.speedDisplay" ng-value="'kn'">{{ 'KNOTS' | translate | capFirst}}</ion-radio>
+      </ion-list>
+    </div>
+
+		<label class="item item-input item-radio-select">
+			<div class="input-label">
+        {{ 'LANGUAGE' | translate | capFirst}}
+			</div>
+			<button class="button empty" ng-click="settings.selectLanguage()">{{ settings.formatLanguage() }}</button>
+		</label>
+
+      <div class="subheader">{{"CUSTOMIZE_MENU" | translate | capFirst}}</div>
+      <ion-list show-reorder="true" class="leftReorderButton">
+        <ion-item ng-repeat="item in settings.menu">
+          <ion-reorder-button class="ion-navicon" on-reorder="settings.reorderItem(item, $fromIndex, $toIndex)"></ion-reorder-button>
+          <div class="content">
+            <i ng-if="item.icon == 'icon'" class="{{item.class}}"></i>
+
+            <!--
+            <img ng-if="item.icon == 'img' && !home.loading" class="{{item.class}}" ng-attr-src="{{item.src}}">
+            <img ng-if="item.icon == 'img' && home.loading" class="{{item.class}}" ng-attr-src="{{item.src_inactive}}">
+            -->
+
+            <img ng-if="item.icon == 'img' && item.route == 'gotoAlerts'" class="{{item.class}}" src="img/newevent_blue.svg">
+            <img ng-if="item.icon == 'img' && item.route == 'openReports'" class="{{item.class}}" src="img/report.svg">
+            <!-- <img ng-if="item.icon == 'img' && item.route == 'openDriverBehavior'" class="{{item.class}}" src="img/movement.svg"> -->
+            <img ng-if="item.icon == 'img' && item.route == 'openListFences'" class="{{item.class}}" src="img/zones_red.svg">
+            <img ng-if="item.icon == 'img' && item.route == 'openGprs'" class="{{item.class}}" src="img/cmd.svg">
+            <img ng-if="item.icon == 'img' && item.route == 'openAbout'" src="img/app.svg">
+            {{item.title | translate | capFirst}}
+          </div>
+          <div style="flex:1;"></div>
+          <label class="switch" ng-class="{'disabled': item.name == 'more'}">
+            <input ng-change="settings.saveMenu()" ng-model="item.showOnHome" type="checkbox" class="ng-pristine ng-untouched ng-valid ng-empty" ng-disabled="item.name == 'more'">
+            <div class="sliderT round">
+            </div>
+          </label>
+        </ion-item>
+      </ion-list>
+
+    <div class="privacyButtonContainer" style="display: none;">
+      <button class="button privacyPolicyButton" ui-sref="privacy">{{ 'PRIVACY_POLICY' | translate | capFirst}}</button>
+    </div>
+
+  </div>
+  </ion-content>
+</ion-view>

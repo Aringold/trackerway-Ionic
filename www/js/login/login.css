@@ -1,0 +1,183 @@
+.loginView {
+  background: #000;
+}
+
+.loginView .loginContainer {
+  /*background: url("../../img/login-background.jpg") no-repeat center #eee;*/
+  background: #f3f3f3;
+  /*background-size: 100% 100%;*/
+  background-size: cover;
+  height: 100%;
+}
+
+.loginView .loginContainer-landscape {
+  display: none;
+  visibility: hidden;
+  background: #f3f3f3;
+  background-size: cover;
+  height: 100%;
+}
+
+.loginLogo {
+  max-width: 100%;
+  width: 100%;
+  min-width: 100%;
+  padding: 3rem 2rem;
+  display: inline-block;
+  -webkit-transition: transform .32s;
+  -moz-transition: transform .32s;
+  -ms-transition: transform .32s;
+  -o-transition: transform .32s;
+  transition: transform .32s;
+}
+
+.loginBox {
+  width: 100%;
+  padding: 0 2rem 2rem 2rem;
+
+  -webkit-transition: transform .32s;
+  -moz-transition: transform .32s;
+  -ms-transition: transform .32s;
+  -o-transition: transform .32s;
+  transition: transform .32s;
+}
+
+.loginBox .item-input {
+  margin-bottom: 1rem;
+}
+
+.buttonContainer {
+  text-align: center;
+}
+
+body .loginView input {
+}
+
+.loginView .item {
+  background: rgba(255, 255, 255, .7);
+}
+
+.loginView .item-input {
+  padding: 0;
+  text-decoration: none !important;
+  border: 1px solid #D9DADA;
+  padding: .5rem;
+  background: #fff;
+}
+
+.serverSelect {
+  margin-bottom: 2rem;
+}
+
+.serverSelect span {
+  width: 49%;
+  display: inline-block;
+  color: #fff;
+  text-align: center;
+  line-height: 2.5rem;
+  height: 2.5rem;
+  border-radius: 4px;
+}
+
+.serverSelect span.selected {
+  background: rgba(255, 255, 255, .25);
+}
+
+.loginLogoContainer {
+  text-align: center;
+}
+
+.checkbox.checkbox-input-hidden.disable-pointer-events.checkbox-circle {
+  left: 0;
+}
+
+body .loginView .loginButton {
+  width: 100%;
+  /*float: left;*/
+  /*background: rgba(255, 255, 255, .25);*/
+  /*color: #fff;*/
+  min-height: 2.5rem;
+  line-height: 2.5rem;
+  font-family: "century gothic";
+  font-size: 100%;
+  border: 1px solid #D9DADA;
+}
+
+body .loginView .loginButton.button:hover {
+  /*color: #fff;*/
+}
+
+body .loginView .loginButton.activated {
+  /*color: #fff;*/
+  float: left;
+}
+
+.loginButtonColor {
+  background-color: #2B82D4 !important;
+  color: #f3f3f3 !important;
+}
+
+.rememberme {
+  float: right;
+  font-size: 12px;
+  padding: 0;
+  width: 8rem;
+  text-align: right;
+  background: transparent !important;
+  color: white;
+  border: none;
+  min-height: 2.5rem;
+  line-height: 2.5rem;
+}
+
+.loginRegisterButton {
+  background: transparent !important;
+  /*color: #fff !important;*/
+  font-family: "century gothic";
+  border: none;
+  font-size: 100%;
+}
+
+.loginRegisterButton:active,
+.loginRegisterButton:focus,
+.loginRegisterButton:hover {
+  border: none;
+}
+
+.registerRecoverContainer {
+  position: absolute;
+  bottom: 1rem;
+  left: 1rem;
+}
+
+body.keyboard-open .registerRecoverContainer {
+  /*display: none;*/
+}
+.demoLoginButtonContainer {
+	width: 100%;
+	padding: 4rem 2rem 0rem;
+}
+/*
+@media (orientation: landscape) {
+  .loginView .loginContainer {
+    display: none;
+    visibility: hidden;
+  }
+  .loginView .loginContainer-landscape {
+    display: flex;
+    visibility: visible;
+    flex-direction: row;
+    align-items: center;
+  }
+  .loginContainer-landscape .loginLogoContainer {
+    width: 50%;
+  }
+  .loginContainer-landscape .loginBox {    
+    width: 50%;
+    padding-bottom: 0px;
+  }
+  .loginContainer-landscape .demoLoginButtonContainer {    
+    padding: 0px;
+  }
+}
+*/

@@ -1,0 +1,56 @@
+<ion-view class="driverBehaviorView" view-title="{{ 'DRIVER_BEHAVIOR_EVENTS_DATA' | translate }}" ng-controller="driverBehaviorEventsDataController as ctrl">
+  <ion-content class="driverBehaviorContent margin-bottom">
+    <div ng-show="ctrl.working" class="spinner-container">
+      <ion-spinner class="spinner-positive"></ion-spinner>
+    </div>
+    <div ng-hide="ctrl.working">
+      <label class="item-input search-input list">
+        <input type="text"
+              ng-change="ctrl.filterTable()"
+              autocorrect="off"
+              autocapitalize="none"
+              ng-model="ctrl.filter"
+              placeholder="{{ 'DRIVER_BEHAVIOR_EVENTS_DATA_FILTER' | translate | capFirst}}">
+      </label>
+      <div class="row no-padding group-sort">
+        <label class="item item-input item-select col-80">
+          <div class="input-label">
+            {{ 'DRIVER_BEHAVIOR_EVENTS_DATA_SORT_BY' | translate | capFirst}}
+          </div>
+          <button class="button empty" ng-click="ctrl.selectSorting()">{{ ctrl.sorting.name }}</button>
+        </label>
+        <button class="button button-sort-direction col-20" ng-class="{'ascending-sort': ctrl.direction == 'asc', 'descending-sort': ctrl.direction == 'desc'}" ng-click="ctrl.changeDirection()"></button>
+      </div>
+      <div class="no-data text-center" ng-if="!ctrl.working && !ctrl.data.length">{{'DRIVER_BEHAVIOR_EVENTS_DATA_NO_DATA' | translate}}</div>
+      <div class="no-data text-center" ng-if="!ctrl.working && ctrl.data.length && !ctrl.table.length">{{'DRIVER_BEHAVIOR_EVENTS_DATA_NO_RESULTS' | translate}}</div>
+      <ion-list class="view-event-data">
+        <ion-item ng-repeat="row in ctrl.table">
+          <div class="row">
+            <div class="col col-66 vehicle-name text-left">{{row.name}}</div>
+            <div class="col col-34 date text-right">{{row.date}}</div>
+          </div>
+          <div class="row">
+            <div class="col data">
+              <strong>{{'DRIVER_BEHAVIOR_EVENTS_DATA_RATING' | translate}}: {{ctrl.ratings[row.rating]}}</strong>,
+              {{'DRIVER_BEHAVIOR_EVENTS_DATA_ECOSCORE' | translate}}: {{row.ecoscore}}, 
+              {{'DRIVER_BEHAVIOR_EVENTS_DATA_OVERSPEED' | translate}}: {{row.overspeed}}, 
+              {{'DRIVER_BEHAVIOR_EVENTS_DATA_ENGINE_IDLE' | translate}}: {{row.idling}}, 
+              {{'DRIVER_BEHAVIOR_EVENTS_DATA_TOTAL' | translate}}: {{row.total}} 
+            </div>
+          </div>
+        </ion-item>
+      </ion-list>
+    </div>
+  </ion-content>
+  <div class="bar bar-footer" ng-hide="ctrl.working">
+    <button class="button" ng-click="ctrl.pageLeft()"><i class="ion-chevron-left"></i></button>
+    <div class="title">
+      <div class="">{{pageNum}} of {{ctrl.getPagesCount()}}</div>
+      <div class="item range">
+        <input type="range" name="pageNum" ng-model="pageNum" min="1" max="{{ctrl.getPagesCount()}}">
+      </div>
+    </div>
+    <button class="button" ng-click="ctrl.pageRight()"><i class="ion-chevron-right"></i></button>
+  </div>
+</ion-view>
+

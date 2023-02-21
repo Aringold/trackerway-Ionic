@@ -1,0 +1,86 @@
+{
+  "_args": [
+    [
+      {
+        "raw": "angular-pdfjs-viewer",
+        "scope": null,
+        "escapedName": "angular-pdfjs-viewer",
+        "name": "angular-pdfjs-viewer",
+        "rawSpec": "",
+        "spec": "latest",
+        "type": "tag"
+      },
+      "D:\\Projects\\TrackingPlatform\\mobile.tracker-way"
+    ]
+  ],
+  "_from": "angular-pdfjs-viewer@latest",
+  "_id": "angular-pdfjs-viewer@2.0.1",
+  "_inCache": true,
+  "_location": "/angular-pdfjs-viewer",
+  "_nodeVersion": "6.8.1",
+  "_npmOperationalInternal": {
+    "host": "s3://npm-registry-packages",
+    "tmp": "tmp/angular-pdfjs-viewer-2.0.1.tgz_1511170193644_0.16332957800477743"
+  },
+  "_npmUser": {
+    "name": "moesjarraf",
+    "email": "moesjarraf@gmail.com"
+  },
+  "_npmVersion": "3.10.8",
+  "_phantomChildren": {},
+  "_requested": {
+    "raw": "angular-pdfjs-viewer",
+    "scope": null,
+    "escapedName": "angular-pdfjs-viewer",
+    "name": "angular-pdfjs-viewer",
+    "rawSpec": "",
+    "spec": "latest",
+    "type": "tag"
+  },
+  "_requiredBy": [
+    "#USER",
+    "/"
+  ],
+  "_resolved": "https://registry.npmjs.org/angular-pdfjs-viewer/-/angular-pdfjs-viewer-2.0.1.tgz",
+  "_shasum": "2a7615729fd40bdff4d6f1de555c98e9a112e0c7",
+  "_shrinkwrap": null,
+  "_spec": "angular-pdfjs-viewer",
+  "_where": "D:\\Projects\\TrackingPlatform\\mobile.tracker-way",
+  "dependencies": {
+    "bower": "^1.8.2"
+  },
+  "description": "Embed PDF.js viewer into your angular application",
+  "devDependencies": {
+    "grunt": "^0.4.5",
+    "grunt-replace": "^0.10.2"
+  },
+  "directories": {},
+  "dist": {
+    "shasum": "2a7615729fd40bdff4d6f1de555c98e9a112e0c7",
+    "tarball": "https://registry.npmjs.org/angular-pdfjs-viewer/-/angular-pdfjs-viewer-2.0.1.tgz"
+  },
+  "gitHead": "40769c624908c90010b57a8d3c34ddfaacff115b",
+  "license": "MIT",
+  "main": "dist/angular-pdfjs-viewer.js",
+  "maintainers": [
+    {
+      "name": "moesjarraf",
+      "email": "moesjarraf@gmail.com"
+    },
+    {
+      "name": "svenstam",
+      "email": "sven.stam@gmail.com"
+    },
+    {
+      "name": "legalthings",
+      "email": "sven@legalthings.io"
+    }
+  ],
+  "name": "angular-pdfjs-viewer",
+  "optionalDependencies": {},
+  "readme": "ERROR: No README data found!",
+  "scripts": {
+    "postinstall": "bower install"
+  },
+  "version": "2.0.1"
+}

@@ -1,0 +1,11 @@
+<div class="formContainer">
+	<div class="input-wrapper filter-input">
+		<input type="text" placeholder="{{ 'FILTER' | translate }}" ng-model="filterValue" maxlength="25">
+	</div>
+</div>
+
+<div ng-repeat="country in countrys | filter:filterValue">
+	<div class="checkbox-list-wrapper">
+		<ion-radio ng-model="selectedItem" ng-value="country.value" ng-click="selectItem(country.value)">{{ country.country }}</ion-radio>
+	</div>
+</div>

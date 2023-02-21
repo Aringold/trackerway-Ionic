@@ -1,0 +1,5 @@
+<div ng-repeat="format in formats">
+	<div class="checkbox-list-wrapper">
+		<ion-radio ng-model="selectedItem" ng-value="format.value" ng-click="selectItem(format.value)">{{ format.title }}</ion-radio>
+	</div>
+</div>

@@ -1,0 +1,5 @@
+<div ng-repeat="stop in stops">
+	<div class="checkbox-list-wrapper">
+		<ion-radio ng-model="selectedItem" ng-value="stop.value" ng-click="selectItem(stop.value)">{{ stop.title }}</ion-radio>
+	</div>
+</div>

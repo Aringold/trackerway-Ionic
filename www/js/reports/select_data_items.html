@@ -1,0 +1,10 @@
+<div ng-repeat="data_item in data_items">
+	<div class="toggle-wrapper flex-row">
+		<span>{{ data_item.name }}</span>
+		<label class="switch">
+			<input ng-model="data_item.selected" type="checkbox" class="ng-pristine ng-untouched ng-valid ng-empty">
+			<div class="sliderT round">
+			</div>
+		</label>
+	</div>
+</div>

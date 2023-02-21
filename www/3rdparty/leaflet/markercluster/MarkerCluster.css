@@ -1,0 +1,48 @@
+.leaflet-cluster-anim .leaflet-marker-icon, .leaflet-cluster-anim .leaflet-marker-shadow {
+	-webkit-transition: -webkit-transform 0.3s ease-out, opacity 0.3s ease-in;
+	-moz-transition: -moz-transform 0.3s ease-out, opacity 0.3s ease-in;
+	-o-transition: -o-transform 0.3s ease-out, opacity 0.3s ease-in;
+	transition: transform 0.3s ease-out, opacity 0.3s ease-in;
+}
+
+.leaflet-cluster-spider-leg {
+	/* stroke-dashoffset (duration and function) should match with leaflet-marker-icon transform in order to track it exactly */
+	-webkit-transition: -webkit-stroke-dashoffset 0.3s ease-out, -webkit-stroke-opacity 0.3s ease-in;
+	-moz-transition: -moz-stroke-dashoffset 0.3s ease-out, -moz-stroke-opacity 0.3s ease-in;
+	-o-transition: -o-stroke-dashoffset 0.3s ease-out, -o-stroke-opacity 0.3s ease-in;
+	transition: stroke-dashoffset 0.3s ease-out, stroke-opacity 0.3s ease-in;
+}
+
+.cluster-small span
+{
+	background-color: rgba(110, 204, 57, 0.6);
+}
+
+.cluster-medium span
+{
+	background-color: rgba(240, 194, 12, 0.6);
+}
+
+.cluster-large span
+{
+	background-color: rgba(241, 128, 23, 0.6);
+}
+
+.marker-cluster span,
+.object-cluster span
+{
+	position: absolute;
+	left: 75%;
+	bottom: 100%;
+	font-size: 11px;
+	line-height: 12px;
+	padding: 3px;
+	display: block;
+	border-radius: 2px;
+}
+
+.marker-cluster img,
+.object-cluster img
+{
+	width: 70%;
+}

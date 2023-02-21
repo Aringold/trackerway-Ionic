@@ -1,0 +1,288 @@
+<ion-view view-title="{{ 'ALERTS' | translate | capFirst}}" ng-controller="alertsController as alerts">
+  <ion-content class="neweventContent">
+
+    <div ng-if="alerts.working" class="eventSpinnerContainer">
+      <ion-spinner class="spinner-positive"></ion-spinner>
+    </div>
+
+    <div ng-if="!alerts.working" class="expiredObjects search-device" style="padding: .5rem;">
+      <input type="text" placeholder="{{ 'SEARCH_EVENT' | translate | capFirst}}" ng-model="alerts.eventFilter" style="width: 100%;">
+    </div>
+    <div ng-if="!alerts.working" class="expiredObjects search-device" style="padding: .5rem;">
+      <input type="text" placeholder="{{ 'SEARCH_EVENT_WITH_DEVICE' | translate | capFirst}}" ng-model="alerts.eventObjectFilter" style="width: 100%;">
+    </div>
+
+    <div class="no-events text-center" ng-if="!alerts.working && !alerts.events.length">{{'NO_EVENTS' | translate}}</div>
+
+    <ion-list class="view-alerts"
+              show-delete="alerts.shouldShowDelete"
+              show-reorder="alerts.shouldShowReorder"
+              can-swipe="alerts.listCanSwipe">
+      <ion-item ng-repeat="event in alerts.events | filter:alerts.filter" class="item-thumbnail-left">
+        <img ng-if="event.eventType == 'MOVEMENT_ALERT'" src="img/movement.svg">
+        <img ng-if="event.eventType == 'SPEEDING_ALERT'" src="img/overspeed.svg">
+        <img ng-if="event.eventType == 'ZONE_IN_ALERT'" src="img/zone_in.svg">
+        <img ng-if="event.eventType == 'ZONE_IN_OUT_ALERT'" src="img/zone_out.svg">
+        <img ng-if="event.eventType == 'CONNECTION_NO_ALERT'" src="img/no_connection.svg">
+        <img ng-if="['MOVEMENT_ALERT', 'SPEEDING_ALERT', 'ZONE_IN_ALERT', 'ZONE_IN_OUT_ALERT', 'CONNECTION_NO_ALERT'].indexOf(event.eventType) < 0" src="img/newevent_blue.svg">
+        <h2>{{event.name}}</h2>
+        <p ng-if="event._objects.length > 5 && expanded.indexOf(event.event_id) < 0"><strong>{{'REPORT_OBJECT' | translate}}:</strong>&nbsp;{{event._objects.slice(0, 5).join(', ')}}...&nbsp;<a ng-click="expanded.push(event.event_id)">Expand</a></p>
+        <p ng-if="event._objects.length > 5 && expanded.indexOf(event.event_id) >= 0"><strong>{{'REPORT_OBJECT' | translate}}:</strong>&nbsp;{{event._objects.join(', ')}}&nbsp;<a ng-click="expanded.splice(expanded.indexOf(event.event_id), 1)">Collapse</a></p>
+        <p ng-if="event._objects.length <= 5"><strong>{{'REPORT_OBJECT' | translate}}:</strong>&nbsp;{{event._objects.join(', ')}}</p>
+        <p ng-if="event.eventType == 'ZONE_IN_ALERT' || event.eventType == 'ZONE_IN_OUT_ALERT'"><strong>{{'ZONES' | translate}}:</strong>&nbsp;{{event._zones.join(', ')}}</p>
+        <ion-option-button ng-if="['MOVEMENT_ALERT', 'SPEEDING_ALERT', 'ZONE_IN_ALERT', 'ZONE_IN_OUT_ALERT', 'CONNECTION_NO_ALERT'].indexOf(event.eventType) >= 0" class="button-balanced" ng-click="alerts.edit(event)">{{'EVENT_EDIT' | translate}}</ion-option-button>
+        <ion-option-button ng-if="!event.isActive" class="button-positive" ng-click="alerts.activate(event)">{{'EVENT_ACTIVATE' | translate}}</ion-option-button>
+        <ion-option-button ng-if="event.isActive" class="button-assertive" ng-click="alerts.deactivate(event)">{{'EVENT_DEACTIVATE' | translate}}</ion-option-button>
+        <ion-delete-button class="ion-minus-circled" ng-click="items.splice($index, 1)"></ion-delete-button>
+        <ion-reorder-button class="ion-navicon" on-reorder="reorderItem(item, $fromIndex, $toIndex)"></ion-reorder-button>
+      </ion-item>
+    </ion-list>
+    <!--
+    <div class="objectCard" ng-repeat="object in alerts.objects">
+      <div class="objectCardTitle">{{object.name}}</div>
+      <div class="objectCardContent">
+        <div class="cardRow" ng-if="object.movementAlerts.length <= 1">
+          <div>{{ 'MOVEMENT_ALERT' | translate | capFirst}}</div>
+          <div>
+            <label class="switch" ng-click="alerts.movementAlert(object, object.movementAlerts[0], $event)">
+              <input type="checkbox" ng-model="object.movementAlerts[0].isActive">
+              <div class="sliderT round"></div>
+            </label>
+          </div>
+        </div>
+        <div class="card-group" ng-if="object.movementAlerts.length > 1">
+          <div class="cardRow">
+            <div>{{ 'MOVEMENT_ALERT' | translate | capFirst}}</div>
+          </div>
+          <div class="cardRow" ng-repeat="alert in object.movementAlerts">
+            <div>{{alert.name}}</div>
+            <div>
+              <label class="switch" ng-click="alerts.movementAlert(object, alert, $event)">
+                <input type="checkbox" ng-model="alert.isActive">
+                <div class="sliderT round"></div>
+              </label>
+            </div>
+          </div>
+        </div>
+
+        <div class="cardRow" ng-if="object.speedingAlerts.length <= 1">
+          <div>{{ 'SPEEDING_ALERT' | translate | capFirst}}</div>
+          <div>
+            <label class="switch" ng-click="alerts.speedingAlert(object, object.speedingAlerts[0], $event)">
+              <input type="checkbox" ng-model="object.speedingAlerts[0].isActive">
+              <div class="sliderT round"></div>
+            </label>
+          </div>
+        </div>
+        <div class="card-group" ng-if="object.speedingAlerts.length > 1">
+          <div class="cardRow">
+            <div>{{ 'SPEEDING_ALERT' | translate | capFirst}}</div>
+          </div>
+          <div class="cardRow" ng-repeat="alert in object.speedingAlerts">
+            <div>{{alert.name}}:&nbsp;{{alert.checked_value}}&nbsp;{{ 'kmh' | translate }}</div>
+            <div>
+              <label class="switch" ng-click="alerts.speedingAlert(object, alert, $event)">
+                <input type="checkbox" ng-model="alert.isActive">
+                <div class="sliderT round"></div>
+              </label>
+            </div>
+          </div>
+        </div>
+
+        <div class="cardRow" ng-if="(object.protocol=='queclinkgl300' || object.protocol=='queclinkgl200' || object.protocol=='coban' || object.protocol=='teltonikagh') && object.lowBatteryAlerts.length <= 1">
+          <div>{{ 'LOW_BATTERY_ALERT' | translate | capFirst}}</div>
+          <div>
+            <label class="switch" ng-click="alerts.lowBatteryAlert(object, object.lowBatteryAlerts[0], $event)">
+              <input type="checkbox" ng-model="object.lowBatteryAlerts[0].isActive">
+              <div class="sliderT round"></div>
+            </label>
+          </div>
+        </div>
+        <div class="card-group" ng-if="(object.protocol=='queclinkgl300' || object.protocol=='queclinkgl200' || object.protocol=='coban' || object.protocol=='teltonikagh') && object.lowBatteryAlerts.length > 1">
+          <div class="cardRow">
+            <div>{{ 'LOW_BATTERY_ALERT' | translate | capFirst}}</div>
+          </div>
+          <div class="cardRow" ng-repeat="alert in object.lowBatteryAlerts">
+            <div>{{alert.name}}</div>
+            <div>
+              <label class="switch" ng-click="alerts.lowBatteryAlert(object, alert, $event)">
+                <input type="checkbox" ng-model="alert.isActive">
+                <div class="sliderT round"></div>
+              </label>
+            </div>
+          </div>
+        </div>
+
+        <div class="cardRow" ng-if="(object.protocol=='queclinkgl300' || object.protocol=='queclinkgl200') && object.wakeAlerts.length <= 1">
+          <div>{{ 'WAKE_ALERT' | translate | capFirst}}</div>
+          <div>
+            <label class="switch" ng-click="alerts.wakeAlert(object, object.wakeAlerts[0], $event)">
+              <input type="checkbox" ng-model="object.wakeAlerts[0].isActive">
+              <div class="sliderT round"></div>
+            </label>
+          </div>
+        </div>
+        <div class="card-group" ng-if="(object.protocol=='queclinkgl300' || object.protocol=='queclinkgl200') && object.wakeAlerts.length > 1">
+          <div class="cardRow">
+            <div>{{ 'WAKE_ALERT' | translate | capFirst}}</div>
+          </div>
+          <div class="cardRow" ng-repeat="alert in object.wakeAlerts">
+            <div>{{alert.name}}</div>
+            <div>
+              <label class="switch" ng-click="alerts.wakeAlert(object, alert, $event)">
+                <input type="checkbox" ng-model="alert.isActive">
+                <div class="sliderT round"></div>
+              </label>
+            </div>
+          </div>
+        </div>
+
+        <div class="cardRow" ng-if="(object.protocol=='queclinkgl300' || object.protocol=='queclinkgl200') && object.sosAlerts.length <= 1">
+          <div>{{ 'SOS_ALERT' | translate | capFirst}}</div>
+          <div>
+            <label class="switch" ng-click="alerts.sosAlert(object, object.sosAlerts[0], $event)">
+              <input type="checkbox" ng-model="object.sosAlerts[0].isActive">
+              <div class="sliderT round"></div>
+            </label>
+          </div>
+        </div>
+        <div class="card-group" ng-if="(object.protocol=='queclinkgl300' || object.protocol=='queclinkgl200') && object.sosAlerts.length > 1">
+          <div class="cardRow">
+            <div>{{ 'SOS_ALERT' | translate | capFirst}}</div>
+          </div>
+          <div class="cardRow" ng-repeat="alert in object.sosAlerts">
+            <div>{{alert.name}}</div>
+            <div>
+              <label class="switch" ng-click="alerts.sosAlert(object, alert, $event)">
+                <input type="checkbox" ng-model="alert.isActive">
+                <div class="sliderT round"></div>
+              </label>
+            </div>
+          </div>
+        </div>
+
+        <div class="cardRow" ng-if="(object.protocol=='teltonikafm') && object.ignitionAlerts.length <= 1">
+          <div>{{ 'IGNITION_ALERT' | translate | capFirst}}</div>
+          <div>
+            <label class="switch" ng-click="alerts.ignitionAlert(object, object.ignitionAlerts[0], $event)">
+              <input type="checkbox" ng-model="object.ignitionAlerts[0].isActive">
+              <div class="sliderT round"></div>
+            </label>
+          </div>
+        </div>
+        <div class="card-group" ng-if="(object.protocol=='teltonikafm') && object.ignitionAlerts.length > 1">
+          <div class="cardRow">
+            <div>{{ 'IGNITION_ALERT' | translate | capFirst}}</div>
+          </div>
+          <div class="cardRow" ng-repeat="alert in object.ignitionAlerts">
+            <div>{{alert.name}}</div>
+            <div>
+              <label class="switch" ng-click="alerts.ignitionAlert(object, alert, $event)">
+                <input type="checkbox" ng-model="alert.isActive">
+                <div class="sliderT round"></div>
+              </label>
+            </div>
+          </div>
+        </div>
+
+        <div class="cardRow" ng-if="(object.protocol=='teltonikafm') && object.towAlerts.length <= 1">
+          <div>{{ 'TOW_ALERT' | translate | capFirst}}</div>
+          <div>
+            <label class="switch" ng-click="alerts.towAlert(object, object.towAlerts[0], $event)">
+              <input type="checkbox" ng-model="object.towAlerts[0].isActive">
+              <div class="sliderT round"></div>
+            </label>
+          </div>
+        </div>
+        <div class="card-group" ng-if="(object.protocol=='teltonikafm') && object.towAlerts.length > 1">
+          <div class="cardRow">
+            <div>{{ 'TOW_ALERT' | translate | capFirst}}</div>
+          </div>
+          <div class="cardRow" ng-repeat="alert in object.towAlerts">
+            <div>{{alert.name}}</div>
+            <div>
+              <label class="switch" ng-click="alerts.towAlert(object, alert, $event)">
+                <input type="checkbox" ng-model="alert.isActive">
+                <div class="sliderT round"></div>
+              </label>
+            </div>
+          </div>
+        </div>
+
+        <div class="cardRow" ng-if="object.zoneInAlerts.length <= 1">
+            <div>{{ 'ZONE_IN_ALERT' | translate | capFirst}}<button ng-if="object.zoneInAlerts[0].isActive" class="button button-settings" ng-click="alerts.zoneInAlertSettings(object, object.zoneInAlerts[0], $event)"><i class="ion-ios-gear"></i></button></div>
+          <div>
+            <label class="switch" ng-click="alerts.zoneInAlert(object, object.zoneInAlerts[0], $event)">
+              <input type="checkbox" ng-model="object.zoneInAlerts[0].isActive">
+              <div class="sliderT round"></div>
+            </label>
+          </div>
+        </div>
+        <div class="card-group" ng-if="object.zoneInAlerts.length > 1">
+          <div class="cardRow">
+            <div>{{ 'ZONE_IN_ALERT' | translate | capFirst}}</div>
+          </div>
+          <div class="cardRow" ng-repeat="alert in object.zoneInAlerts">
+            <div><span>{{alert.name}}</span><button ng-if="alert.isActive" class="button button-settings" ng-click="alerts.zoneInAlertSettings(object, alert, $event)"><i class="ion-ios-gear"></i></button></div>
+            <div>
+              <label class="switch" ng-click="alerts.zoneInAlert(object, alert, $event)">
+                <input type="checkbox" ng-model="alert.isActive">
+                <div class="sliderT round"></div>
+              </label>
+            </div>
+          </div>
+        </div>
+
+        <div class="cardRow" ng-if="object.zoneInOutAlerts.length <= 1">
+            <div>{{ 'ZONE_IN_OUT_ALERT' | translate | capFirst}}<button ng-if="object.zoneInOutAlerts[0].isActive" class="button button-settings" ng-click="alerts.zoneInOutAlertSettings(object, object.zoneInOutAlerts[0], $event)"><i class="ion-ios-gear"></i></button></div>
+          <div>
+            <label class="switch" ng-click="alerts.zoneInOutAlert(object, object.zoneInOutAlerts[0], $event)">
+              <input type="checkbox" ng-model="object.zoneInOutAlerts[0].isActive">
+              <div class="sliderT round"></div>
+            </label>
+          </div>
+        </div>
+        <div class="card-group" ng-if="object.zoneInOutAlerts.length > 1">
+          <div class="cardRow">
+            <div>{{ 'ZONE_IN_OUT_ALERT' | translate | capFirst}}</div>
+          </div>
+          <div class="cardRow" ng-repeat="alert in object.zoneInOutAlerts">
+            <div><span>{{alert.name}}</span><button ng-if="alert.isActive" class="button button-settings" ng-click="alerts.zoneInOutAlertSettings(object, alert, $event)"><i class="ion-ios-gear"></i></button></div>
+            <div>
+              <label class="switch" ng-click="alerts.zoneInOutAlert(object, alert, $event)">
+                <input type="checkbox" ng-model="alert.isActive">
+                <div class="sliderT round"></div>
+              </label>
+            </div>
+          </div>
+        </div>
+
+        <div class="cardRow" ng-if="object.connectionNoAlerts.length <= 1">
+          <div>{{ 'CONNECTION_NO_ALERT' | translate | capFirst}}</div>
+          <div>
+            <label class="switch" ng-click="alerts.connectionNoAlert(object, object.connectionNoAlerts[0], $event)">
+              <input type="checkbox" ng-model="object.connectionNoAlerts[0].isActive">
+              <div class="sliderT round"></div>
+            </label>
+          </div>
+        </div>
+        <div class="card-group" ng-if="object.connectionNoAlerts.length > 1">
+          <div class="cardRow">
+            <div>{{ 'CONNECTION_NO_ALERT' | translate | capFirst}}</div>
+          </div>
+          <div class="cardRow" ng-repeat="alert in object.connectionNoAlerts">
+            <div>{{alert.name}}</div>
+            <div>
+              <label class="switch" ng-click="alerts.connectionNoAlert(object, alert, $event)">
+                <input type="checkbox" ng-model="alert.isActive">
+                <div class="sliderT round"></div>
+              </label>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    -->
+
+  </ion-content>
+</ion-view>

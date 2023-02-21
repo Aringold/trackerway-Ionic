@@ -1,0 +1,42 @@
+<ion-view ng-controller="gdprAgreementController as gdprAgreement">
+  <ion-content>
+    <div class="agreement-header">
+      <p>Please verify your account</p>
+    </div>
+    <div class="form">
+      <label class="label-text" for="firstName">First Name</label>
+      <input id ="firstName" type="text" required ng-model="gdprAgreement.userData.firstName">
+      <label class="label-text" for="lastName">Last Name</label>
+      <input id ="lastName" type="text" required ng-model="gdprAgreement.userData.lastName">
+      <label class="label-text" for="phoneNumber">Phone number</label>
+      <input id ="phoneNumber" type="tel" required ng-model="gdprAgreement.userData.phoneNumber">
+      <label class="label-text" >Country</label>
+      <label class="item item-input item-radio-select agreement-select">
+        <button class="button select-button empty" ng-click="gdprAgreement.selectCountry()">{{ gdprAgreement.formatCountry() }}</button>
+      </label>
+      <div class="half-row row">
+        <div>
+          <label class="label-text" >Language</label>
+          <label class="item item-input item-radio-select agreement-select">
+            <button class="button select-button empty" ng-click="gdprAgreement.selectLanguage()">{{ gdprAgreement.formatLanguage() }}</button>
+          </label>
+        </div>
+        <div>
+          <label class="label-text" >Timezone</label>
+          <label class="item item-input item-radio-select agreement-select">
+            <button class="button select-button empty" ng-click="gdprAgreement.selectTimeZone()">{{ gdprAgreement.formatTimeZone() }}</button>
+          </label>
+        </div>
+      </div>
+    </div>
+    <div class="agreement">
+      <div class="checkbox-agreement">
+        <input id="checkboxAgreement" type="checkbox" ng-model="gdprAgreement.checkboxAgreement"> I read and accept <a target="_system" href="https://www.trackerway.com/data-processing-agreement/">the GDPR Agreement</a>
+      </div>
+      <div class="button-agreement">
+        <button ng-class="{disabled: gdprAgreement.checkFields()}" ng-click="gdprAgreement.acceptAgreement()">I agree to the GDPR agreement and terms of use</button>
+        <span ng-show="gdprAgreement.checkFields()">Please complete all fields and accept the GDPR Agreement</span>
+      </div>
+    </div>
+  </ion-content>
+</ion-view>

@@ -1,0 +1,5 @@
+<div ng-repeat="type in types">
+	<div class="checkbox-list-wrapper">
+		<ion-radio ng-if="type.value" ng-model="selectedItem" ng-value="type.value" ng-click="selectItem(type.value)">{{ type.title }}</ion-radio>
+	</div>
+</div>

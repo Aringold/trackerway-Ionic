@@ -1,0 +1,74 @@
+body .loginView .registerButton {
+  width: 7rem;
+  float: left;
+  background: rgba(255, 255, 255, .25);
+  min-height: 2.5rem;
+  line-height: 2.5rem;
+  border: none;
+  font-family: "century gothic";
+  font-size: 100%;
+  border: 1px solid #D9DADA;
+
+}
+
+body .loginView .registerButton.button:hover {
+  border: 1px solid #D9DADA;
+
+}
+
+body .loginView .registerButton.activated {
+  background: initial;
+  float: left;
+  border: 1px solid #D9DADA;
+
+}
+
+body .loginView .cancelButton {
+  width: 7rem;
+  float: right;
+  background: rgba(255, 255, 255, .25);
+  min-height: 2.5rem;
+  line-height: 2.5rem;
+  border: none;
+  font-family: "century gothic";
+  font-size: 100%;
+  border: 1px solid #D9DADA;
+
+}
+
+body .loginView .cancelButton.button:hover {
+  border: 1px solid #D9DADA;
+
+}
+
+body .loginView .cancelButton.activated {
+  background: initial;
+  float: right;
+  border: 1px solid #D9DADA;
+
+}
+
+.registerInfo {
+  font-size: .83rem;
+  margin-bottom: 1rem;
+}
+
+.loginView ion-content {
+  top: 0;
+}
+
+
+.registerBox {
+  width: 100%;
+  padding: 0 2rem 2rem 2rem;
+
+  -webkit-transition: transform .32s;
+  -moz-transition: transform .32s;
+  -ms-transition: transform .32s;
+  -o-transition: transform .32s;
+  transition: transform .32s;
+}
+
+.registerBox .item-input {
+  margin-bottom: 1rem;
+}
